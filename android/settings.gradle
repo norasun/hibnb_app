@@ -1,0 +1,3 @@
+rootProject.name = 'hibnb_app'
+
+include ':app'
