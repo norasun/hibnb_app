@@ -7,9 +7,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   date: {
-    marginLeft: 10,
     marginBottom: 10,
-    paddingLeft: 10,
+    paddingLeft: 25,
     fontSize: 18,
     flex: 1,
     flexDirection: 'row',
@@ -17,6 +16,7 @@ const styles = StyleSheet.create({
   },
   roomName:{
     flex: 1,
+    paddingRight: 25,
   },
   room: {
     flex: 1,
@@ -25,15 +25,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: '#e3e3e3',
+    borderColor: '#ddd',
     paddingTop: 30,
     paddingBottom: 30,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 30,
   },
   roomTitle: {
     fontSize: 32,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    paddingRight: 30,
   },
   checkinout: {
     paddingTop: 10,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     paddingTop: 10,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   checkIcon: {
     flex: 1,
@@ -51,9 +51,11 @@ const styles = StyleSheet.create({
   },
   checkInfo: {
     flex: 4,
+    paddingRight: 20,
   },
   checkSummary: {
     fontSize: 16,
+    paddingRight: 20,
   },
   detail: {
       flex: 1,
@@ -169,7 +171,9 @@ const Todolistrow = (props) => {
     everyday.push(
       <View style={styles.room} key={key}>
           <View style={styles.roomName}>
-              <Text style={{fontSize: 20, color: '#333', lineHeight: 22, textAlign: 'left'}}>{v.location}</Text>
+              <Text style={{fontSize: 20, lineHeight: 24, fontWeight: '500', color: '#333', textAlign: 'left'}}>
+                  {v.location}
+              </Text>
           </View>
           <View style={styles.checkinout}>
               {checkout}

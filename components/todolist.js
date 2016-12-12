@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     },
     viewContent: {
         marginTop: 0,
-        paddingTop: 40,
+        paddingTop: 220,
     },
     topSort: {
         backgroundColor: '#454545',
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 6,
         borderTopRightRadius: 6,
         borderBottomWidth: 1,
-        borderBottomColor: '#454545',
+        borderBottomColor: '#fff',
     },
     selectButtonEnd: {
         borderBottomLeftRadius: 6,
@@ -110,6 +110,7 @@ class Todolist extends Component {
     }
 
 
+
     _loadTodolist = async () => {
 
         try {
@@ -145,7 +146,6 @@ class Todolist extends Component {
                       <RefreshControl
                           refreshing={this.state.refreshing}
                           onRefresh={this._onRefresh}
-
                           title="从Airbnb同步日历..."
                       />
                   }
@@ -153,7 +153,7 @@ class Todolist extends Component {
                   onScroll={Animated.event(
                       [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}]
                   )}
-                  scrollEventThrottle={8}
+                  scrollEventThrottle={12}
                   style={styles.viewContent}
                   key='listviewtodolist'
                   dataSource={this.state.calendar_data}
@@ -189,7 +189,7 @@ class Todolist extends Component {
     }
 
     render() {
-        //AsyncStorage.clear()
+        // AsyncStorage.clear()
 
         return (
 
@@ -197,11 +197,10 @@ class Todolist extends Component {
                     style={{
                         flex: 1
                     }}>
-                    
-
-                    <Sort scrollY={this.state.scrollY} />
 
                     { this._renderListView() }
+
+                    <Sort scrollY={this.state.scrollY} startDay={moment(this.props.appState.AppData.date.startDay)} endDay={moment(this.props.appState.AppData.date.endDay)} />
                 </View>
 
         )

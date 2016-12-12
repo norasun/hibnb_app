@@ -120,14 +120,14 @@ class Signin extends Component {
                         <Text style={styles.inputName}>密码</Text>
                     </View>
                     <View style={styles.inputLine}>
-                    <TextInput
-                    ref={'2'}
-                    style={styles.input}
-                    keyboardAppearance = {'dark'}
-                    onChangeText={(text) => this.setState({password: text})}
-                    secureTextEntry ={true}
+                        <TextInput
+                            ref={'2'}
+                            style={styles.input}
+                            keyboardAppearance = {'dark'}
+                            onChangeText={(text) => this.setState({password: text})}
+                            secureTextEntry ={true}
 
-                    />
+                        />
                     </View>
                     <View>
                         <View

@@ -14,7 +14,7 @@ import {
 } from 'react-native'
 
 //导入redux生成的state（应用状态都保存在这里）
-import { is_user_logged_in } from '@norasun/hibnb-core'
+import { is_user_logged_in, actions } from '@norasun/hibnb-core'
 
 //导入UI
 import Nav from './components/nav.js';
@@ -25,7 +25,7 @@ import Hi from './components/hi.js';
 class App extends Component {
 
   _toggleNav = (navName) =>{
-   this.props.dispatch(navChange(navName))
+   this.props.dispatch(actions.navChange(navName))
   }
 
   constructor(props) {
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: "flex-start",
       alignItems: 'stretch',
-      backgroundColor: "#f2f2f2",
+      backgroundColor: "#eee",
   },
   hide: {
       top: Dimensions.get('window').height

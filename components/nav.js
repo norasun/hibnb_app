@@ -29,14 +29,14 @@ const styles = StyleSheet.create({
         height: 49,
     },
     icon: {
-        width: 28,
-        height: 28,
+        width: 32,
+        height: 32,
         tintColor: '#aaa',
         justifyContent: 'space-around',
     },
     iconActive: {
-        width: 28,
-        height: 28,
+        width: 32,
+        height: 32,
         tintColor: '#01D987',
     }
 })
@@ -50,10 +50,10 @@ const navData = [
         name: 'PULSE',
         icon: require('../img/pulse@2x.png'),
     },
-    {
-        name: 'ADD',
-        icon: require('../img/toolbox@2x.png'),
-    },
+    // {
+    //     name: 'ADD',
+    //     icon: require('../img/toolbox@2x.png'),
+    // },
     {
         name: 'SETTINGS',
         icon: require('../img/profile@2x.png'),
