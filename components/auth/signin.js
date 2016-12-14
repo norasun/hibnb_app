@@ -126,7 +126,6 @@ class Signin extends Component {
                             keyboardAppearance = {'dark'}
                             onChangeText={(text) => this.setState({password: text})}
                             secureTextEntry ={true}
-
                         />
                     </View>
                     <View>

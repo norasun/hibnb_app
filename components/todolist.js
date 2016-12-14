@@ -15,7 +15,9 @@ import {
     Animated,
     ScrollView,
     StatusBar,
+    findNodeHandle,
  } from 'react-native';
+ const RCTUIManager = require('NativeModules').UIManager;
 
 import Sort from './Sort.js'
 
@@ -31,65 +33,12 @@ const styles = StyleSheet.create({
     },
     loading: {
         alignItems: 'center',
-        paddingTop: 200,
+        marginTop: 200,
         flex: 1,
     },
     viewContent: {
-        marginTop: 0,
-        paddingTop: 220,
+        paddingTop: 108,
     },
-    topSort: {
-        backgroundColor: '#454545',
-        paddingTop: 40,
-        height: 200,
-        justifyContent: 'space-between',
-    },
-    selectButton: {
-        backgroundColor: '#555',
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginLeft: 20,
-        marginRight: 20,
-    },
-    selectButtonStart: {
-        borderTopLeftRadius: 6,
-        borderTopRightRadius: 6,
-        borderBottomWidth: 1,
-        borderBottomColor: '#fff',
-    },
-    selectButtonEnd: {
-        borderBottomLeftRadius: 6,
-        borderBottomRightRadius: 6,
-        marginBottom: 10,
-    },
-    selectButtonText: {
-        color: '#aaa',
-        lineHeight: 20,
-        flex: 1,
-        fontSize: 16,
-        textAlign: 'center',
-    },
-    topNav: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-    topNavItem: {
-        flex: 1,
-        justifyContent: 'center'
-    },
-    topNavItemText: {
-        color: '#aaa',
-        fontSize: 16,
-        lineHeight: 16,
-        textAlign: 'center',
-    },
-    topNavItemTextActive: {
-        color: '#fff',
-        fontWeight: 'bold',
-    }
 });
 import Loading from './loading.js';
 import Todolistrow from './todolistrow.js';
@@ -142,6 +91,9 @@ class Todolist extends Component {
 
           todoListView.push(
               <ListView
+
+                  ref={'listviewtodolist'}
+
                   refreshControl={
                       <RefreshControl
                           refreshing={this.state.refreshing}
@@ -156,10 +108,9 @@ class Todolist extends Component {
                   scrollEventThrottle={12}
                   style={styles.viewContent}
                   key='listviewtodolist'
-                  dataSource={this.state.calendar_data}
-                  renderRow={(data) => <Todolistrow {...data}
 
-                                       />}
+                  dataSource={this.state.calendar_data}
+                  renderRow={(data) => <Todolistrow {...data} />}
 
               />)
 
@@ -183,6 +134,11 @@ class Todolist extends Component {
 
     componentDidMount() {
 
+        // RCTUIManager.measure(findNodeHandle(this.refs.listviewtodolist), (x, y, width, height, pageX, pageY) => {
+        //     this.refs.calHeader.scrollTo({y:-100, x:0, animated: false})
+        // });
+
+
 
         this._loadTodolist();
 
@@ -190,7 +146,38 @@ class Todolist extends Component {
 
     render() {
         // AsyncStorage.clear()
+        let todoListView = [];
 
+        if(this.state.calendar_data != 0){
+
+          todoListView.push(
+              <ListView
+
+                  ref={'listviewtodolist'}
+
+                  refreshControl={
+                      <RefreshControl
+                          refreshing={this.state.refreshing}
+                          onRefresh={this._onRefresh}
+                          title="从Airbnb同步日历..."
+                      />
+                  }
+
+                  onScroll={Animated.event(
+                      [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}]
+                  )}
+                  scrollEventThrottle={12}
+                  style={styles.viewContent}
+                  key='listviewtodolist'
+
+                  dataSource={this.state.calendar_data}
+                  renderRow={(data) => <Todolistrow {...data} />}
+
+              />)
+
+        }else{
+            todoListView.push(<View key={'loadingcontainer'} style={styles.loading}><Loading key={'loadingtodolist'} loaded={80} txt={'正在同步数据...'} /></View>)
+        }
         return (
 
                 <View
@@ -198,7 +185,7 @@ class Todolist extends Component {
                         flex: 1
                     }}>
 
-                    { this._renderListView() }
+                    {todoListView}
 
                     <Sort scrollY={this.state.scrollY} startDay={moment(this.props.appState.AppData.date.startDay)} endDay={moment(this.props.appState.AppData.date.endDay)} />
                 </View>

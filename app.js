@@ -44,8 +44,6 @@ class App extends Component {
 
   render() {
 
-      console.log(this.props);
-
       if(is_user_logged_in(this.props.appState.Auth)){
           return (
 
@@ -81,7 +79,7 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: "flex-start",
       alignItems: 'stretch',
-      backgroundColor: "#eee",
+      backgroundColor: "#fff",
   },
   hide: {
       top: Dimensions.get('window').height

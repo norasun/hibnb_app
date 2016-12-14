@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#f2f2f2',
+        backgroundColor: '#F0F6F7',
         flex: 1,
         paddingTop: 20,
         justifyContent: 'space-between',
@@ -49,9 +49,10 @@ export default class Datepicker extends Component {
     render(){
         return(
             <Modal
+
                 animationType={"slide"}
                 transparent={false}
-                visible={true}
+                visible={this.props.visible}
                 onRequestClose={() => {alert("Modal has been closed.")}}
             >
                 <View style={styles.container}>
@@ -85,7 +86,7 @@ export default class Datepicker extends Component {
                         </View>
                     </View>
 
-                    <View style={styles.button}>
+                    <View style={styles.button} onTouchEnd={this.props.setDate}>
                         <Text style={styles.buttonText}>
                             完成
                         </Text>
