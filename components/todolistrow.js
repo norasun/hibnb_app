@@ -6,17 +6,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginLeft: 20,
-    borderBottomWidth: 1,
+    borderBottomWidth: StyleSheet.hairlineWidth,
     // borderTopWidth: 1,
-    borderColor: '#e5e5e5',
+    borderColor: '#bbb',
     backgroundColor: '#fff',
-    padding: 20,
+    padding: 30,
+    paddingRight: 20,
     paddingLeft: 0,
   },
   date: {
     marginBottom: 10,
-    fontSize: 24,
-    fontWeight: '400',
+    fontSize: 30,
+    fontWeight: '300',
     flex: 1,
     flexDirection: 'row',
     color: '#000'
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
   checkoutIcon: {
     width: 14,
     height: 14,
-    borderWidth: 1,
+    borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#aaa',
     backgroundColor: '#aaa',
     borderRadius: 20,
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
   checkinIcon: {
     width: 14,
     height: 14,
-    borderWidth: 1,
+    borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#3DEAA9',
     backgroundColor: '#3DEAA9',
     borderRadius: 20,
@@ -60,8 +61,8 @@ const styles = StyleSheet.create({
   noCheck: {
     width: 14,
     height: 14,
-    borderWidth: 1,
-    borderColor: '#bbb',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: '#999',
     borderRadius: 20,
   }
 });

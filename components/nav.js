@@ -15,48 +15,50 @@ const _alertWow = () => {
 const styles = StyleSheet.create({
     navbar: {
         backgroundColor: '#eee',
-        height: 50,
+        height: 56,
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'center',
         zIndex: 2,
+        borderTopWidth: StyleSheet.hairlineWidth,
+        borderColor: '#ccc',
     },
     per: {
         flex:1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        height: 50,
+        height: 56,
     },
     icon: {
-        tintColor: '#000',
+        tintColor: '#999',
         alignItems: 'center',
     },
     iconActive: {
-        tintColor: '#05CA80',
+        tintColor: '#000',
         alignItems: 'center',
     }
 })
 
 const navData = [
+    // {
+    //     name: 'HOME',
+    //     icon: require('../img/todolist.png'),
+    // },
     {
         name: 'HOME',
-        icon: require('../img/todolist.png'),
-    },
-    {
-        name: 'CALENDAR',
         icon: require('../img/calendar.png'),
     },
+    // {
+    //     name: 'ADD',
+    //     icon: require('../img/add.png'),
+    // },
+    // {
+    //     name: 'PULSE',
+    //     icon: require('../img/pulse.png'),
+    // },
     {
-        name: 'ADD',
-        icon: require('../img/add.png'),
-    },
-    {
-        name: 'PULSE',
-        icon: require('../img/pulse.png'),
-    },
-    {
-        name: 'PROFILE',
+        name: 'SETTINGS',
         icon: require('../img/profile.png'),
     }
 ];

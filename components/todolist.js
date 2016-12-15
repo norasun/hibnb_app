@@ -20,6 +20,7 @@ import {
  const RCTUIManager = require('NativeModules').UIManager;
 
 import Sort from './Sort.js'
+import Calendar from './calendar.js'
 
 const HEADER_MAX_HEIGHT = 90
 const HEADER_MIN_HEIGHT = 0
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     viewContent: {
-        paddingTop: 108,
+        paddingTop: 64,
     },
 });
 import Loading from './loading.js';
@@ -46,6 +47,18 @@ import Todolistrow from './todolistrow.js';
 
 class Todolist extends Component {
 
+    constructor(props) {
+      super(props);
+      this.state ={
+          refreshing: false,
+          calendar_data : [],
+          rooms_list: [],
+          viewId: 0,
+          modalVisible: false,
+          scrollY: new Animated.Value(0),
+      }
+      this.toggleView = this.toggleView.bind(this)
+    }
 
     _toggleAddWindow = (state) => {
         this.setState({modalVisible: state})
@@ -57,8 +70,6 @@ class Todolist extends Component {
         this._loadTodolist();
 
     }
-
-
 
     _loadTodolist = async () => {
 
@@ -82,6 +93,21 @@ class Todolist extends Component {
         } catch(error) {
           console.error(error);
         }
+    }
+
+    toggleView(viewId) {
+        this.setState({viewId: viewId})
+    }
+
+    _renderCalender = () => {
+        return (
+            <Calendar
+                appState={this.props.appState}
+                rooms={this.props.appState.AppData.rooms}
+                selectedRoom={this.props.appState.AppData.selectedRoom.roomId}
+                startDay={moment(this.props.appState.AppData.date.startDay)}
+                endDay={moment(this.props.appState.AppData.date.endDay)} />
+        )
     }
 
     _renderListView = () => {
@@ -120,16 +146,7 @@ class Todolist extends Component {
         return todoListView
     }
 
-    constructor(props) {
-      super(props);
-      this.state ={
-          refreshing: false,
-          calendar_data : [],
-          rooms_list: [],
-          modalVisible: false,
-          scrollY: new Animated.Value(0),
-      }
-    }
+
 
 
     componentDidMount() {
@@ -146,37 +163,11 @@ class Todolist extends Component {
 
     render() {
         // AsyncStorage.clear()
-        let todoListView = [];
-
-        if(this.state.calendar_data != 0){
-
-          todoListView.push(
-              <ListView
-
-                  ref={'listviewtodolist'}
-
-                  refreshControl={
-                      <RefreshControl
-                          refreshing={this.state.refreshing}
-                          onRefresh={this._onRefresh}
-                          title="从Airbnb同步日历..."
-                      />
-                  }
-
-                  onScroll={Animated.event(
-                      [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}]
-                  )}
-                  scrollEventThrottle={12}
-                  style={styles.viewContent}
-                  key='listviewtodolist'
-
-                  dataSource={this.state.calendar_data}
-                  renderRow={(data) => <Todolistrow {...data} />}
-
-              />)
-
+        let viewContent = []
+        if(this.state.viewId === 0){
+            viewContent.push(this._renderListView())
         }else{
-            todoListView.push(<View key={'loadingcontainer'} style={styles.loading}><Loading key={'loadingtodolist'} loaded={80} txt={'正在同步数据...'} /></View>)
+            viewContent.push(this._renderCalender())
         }
         return (
 
@@ -185,9 +176,14 @@ class Todolist extends Component {
                         flex: 1
                     }}>
 
-                    {todoListView}
+                    {viewContent}
 
-                    <Sort scrollY={this.state.scrollY} startDay={moment(this.props.appState.AppData.date.startDay)} endDay={moment(this.props.appState.AppData.date.endDay)} />
+                    <Sort
+                        scrollY={this.state.scrollY}
+                        startDay={moment(this.props.appState.AppData.date.startDay)}
+                        endDay={moment(this.props.appState.AppData.date.endDay)}
+                        toggleView={this.toggleView}
+                    />
                 </View>
 
         )
