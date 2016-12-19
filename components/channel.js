@@ -62,7 +62,7 @@ const Nav = (props) => {
             name: 'PROFILE',
             active: false,
             loaded: false,
-            content: <WebView key="profile" source={{uri: 'https://zh.airbnb.com/calendar_mappings'}} />,
+            content: <Toolbox key="toolbox" />,
         }
     ];
 

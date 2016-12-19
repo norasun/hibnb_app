@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     viewContent: {
-        paddingTop: 64,
+        marginTop: 64,
+        marginBottom: 50,
     },
 });
 import Loading from './loading.js';
@@ -82,7 +83,7 @@ class Todolist extends Component {
             let startDay = moment(this.props.appState.AppData.date.startDay)
             let endDay = moment(this.props.appState.AppData.date.endDay)
             // 读取日历列表
-            await getdata.calendarData(userId, null, moment(startDay), moment(endDay), id_token, this.props.dispatch)
+            await getdata.calendarData(userId, null, moment(startDay).format('YYYY-MM-DD'), moment(endDay).format('YYYY-MM-DD'), id_token, this.props.dispatch)
             // 读取房间列表
             await getdata.roomsData(userId, id_token, this.props.dispatch)
             let formatTodolist = await formatdata.formatTodolist(this.props.appState.AppData.calendar.content, this.props.appState.AppData.rooms.content)
@@ -103,6 +104,7 @@ class Todolist extends Component {
         return (
             <Calendar
                 appState={this.props.appState}
+                calendar={this.props.appState.AppData.calendar}
                 rooms={this.props.appState.AppData.rooms}
                 selectedRoom={this.props.appState.AppData.selectedRoom.roomId}
                 startDay={moment(this.props.appState.AppData.date.startDay)}
@@ -127,7 +129,7 @@ class Todolist extends Component {
                           title="从Airbnb同步日历..."
                       />
                   }
-
+                  enableEmptySections={true}
                   onScroll={Animated.event(
                       [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}]
                   )}
@@ -179,7 +181,7 @@ class Todolist extends Component {
                     {viewContent}
 
                     <Sort
-                        scrollY={this.state.scrollY}
+
                         startDay={moment(this.props.appState.AppData.date.startDay)}
                         endDay={moment(this.props.appState.AppData.date.endDay)}
                         toggleView={this.toggleView}

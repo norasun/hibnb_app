@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import moment from 'moment';
 // import { calendarData, roomsData } from '../helpers/getdata' //导入认证函数
 import { formatdata, showview } from '@norasun/hibnb-core'
-
+import {Calendarheader, Calendardays} from './Calendardays'
 import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-  TouchableWithoutFeedback,
-  findNodeHandle,
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    ScrollView,
+    TouchableWithoutFeedback,
+    findNodeHandle,
+    ListView,
+    RefreshControl,
 } from 'react-native'
 
 const RCTUIManager = require('NativeModules').UIManager;
@@ -47,10 +49,56 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         paddingBottom: 20,
     },
+
     calendarHeader:{
         flexDirection: 'row',
-        borderBottomWidth: 0,
-        borderColor: '#ddd',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        height: 40,
+        backgroundColor: '#fff',
+    },
+
+    roomTitleText: {
+        position: 'absolute',
+        fontSize: 12,
+        color: '#333',
+        paddingTop: 10,
+        marginBottom: 10,
+    },
+    resevation: {
+        backgroundColor: '#FBA994',
+        width: 50,
+        height: 34,
+        flex: 1,
+        overflow: 'hidden',
+        borderRadius: 0,
+        borderWidth: 1,
+        borderColor: '#F77979',
+        position: 'absolute',
+        alignItems: 'center',
+    },
+    resevationText: {
+        fontSize: 10,
+    },
+    room: {
+        height: 50,
+        marginBottom: 40,
+    },
+    roomText: {
+        fontSize: 12
+    },
+    roomsContainer: {
+        position: 'absolute',
+        top: 50,
+        left: 0,
+    },
+    daysContainer: {
+        position: 'relative',
+    },
+    headerContainer: {
+
+        flexDirection: 'row',
     },
     titlePer: {
         alignItems: 'center',
@@ -66,36 +114,6 @@ const styles = StyleSheet.create({
         color: '#888',
         paddingTop: 4,
     },
-    roomTitleText: {
-        position: 'absolute',
-        fontSize: 12,
-        color: '#333',
-        paddingTop: 10,
-        marginBottom: 10,
-    },
-    dayRow: {
-        flexDirection: 'row',
-        paddingTop: 40,
-        paddingBottom: 10,
-        borderBottomWidth: 0,
-        borderColor: '#e5e5e5',
-    },
-    perDay: {
-        width: 50,
-        height: 40,
-        borderRightWidth: StyleSheet.hairlineWidth,
-        backgroundColor: '#f2f2f2',
-        borderColor: '#bbb',
-    },
-    activeDay: {
-        position: 'absolute',
-        top: 53,
-        left: 20,
-        width: 100,
-        height: 10,
-        borderRadius: 10,
-        backgroundColor: '#FBA994',
-    }
 })
 
 let roomTitleLeft = 20
@@ -104,13 +122,25 @@ let roomTitleLeft = 20
 class Calendar extends Component {
 
 
-
-    _haha = () => {
-        RCTUIManager.measure(findNodeHandle(this.refs.hahah222), (x, y, width, height, pageX, pageY) => {
-            this.refs.calHeader.scrollTo({y:0, x:-pageX, animated: false})
-        });
+    _onRefresh(){
+        this.setState({refreshing: true});
     }
 
+    _haha = (e) => {
+        if(this.refs.roomsContainer){
+            this.refs.roomsContainer.scrollTo({x: 0, y: e.nativeEvent.contentOffset.y, animated: false});
+        }
+        if(this.refs.calHeader){
+            this.refs.calHeader.scrollTo({y: 0, x: e.nativeEvent.contentOffset.x, animated: false});
+        }
+
+
+
+
+    }
+    yesyes(){
+        alert(1)
+    }
     _fixHeader = () => {
         RCTUIManager.measure(findNodeHandle(this.refs.mainContainer), (x, y, width, height, pageX, pageY) => {
             if(pageY <= -50){
@@ -119,107 +149,171 @@ class Calendar extends Component {
         });
     }
 
-    constructor(props) {
-      super(props);
-      this.state = {
-          mainContainerScrollable: true,
-          roomTitleLeft: 10,
-      }
+
+    returnResevations(){
+        let resevations = []
+        let top = 0
+        if(this.props.calendar.totalCount !== 0){
+            let i = 1
+            this.props.calendar.content.map((item)=>{
+
+                let resevationData = JSON.stringify({"relationId": item.bnbRoomId + '-' + moment(item.checkout).format('YYMMDD').toString()})
+
+                resevations.push(
+                    <View
+                        key={'resevation' + item.bnbRoomId + moment(item.checkin).format('YYYYMMDD').toString()}
+                        ref={'resevation' + item.bnbRoomId + moment(item.checkin).format('YYYYMMDD').toString()}
+                        style={[styles.resevation, {
+                            left: 50 * parseInt(moment(item.checkin).diff(moment(this.props.startDay), 'days')),
+                            top: top,
+                            width: 45 * parseInt(moment(item.checkout).diff(moment(item.checkin), 'days'))
+                        }]}
+                        onTouchStart={this.yesyes}
+                    >
+                        <Text style={styles.resevationText}>{item.summary}</Text>
+                    </View>
+                )
+
+                top = 90 * i
+
+                if(i === this.props.rooms.totalCount){
+                    i = 1
+                }
+                i += 1
+                return false
+            })
+        }
+        return resevations
     }
 
-    componentDidMount() {
-        // getdata.calendarData(this.props.appState.Auth0.id_token)
+    rooms(){
+        let rooms = []
+        let roomsContainer = []
+        if(this.props.rooms.totalCount !== 0){
+            this.props.rooms.content.map((room) => {
+                rooms.push(
+                    <View style={styles.room}>
+                        <Text style={styles.roomText}>
+                            {room.name}
+                        </Text>
+                    </View>
+                )
+            })
+        }
+        roomsContainer.push(
+            <ScrollView
+                style={styles.roomsContainer}
+                ref={'roomsContainer'}
+                scrollEventThrottle={12}
+                horizontal={false}
+                scrollEnabled={false}
+                bounces={false}
+            >
+                {rooms}
+            </ScrollView>)
+            return roomsContainer
     }
+
+    daysHeader(days, sectionId){
+        let header = []
+
+        let wowday = []
+        days.map((day) => {
+            wowday.push(
+                <View style={styles.titlePer}  key={'h'+ moment(day).format('YYMMDD')}>
+                    <Text style={styles.perBig}>{moment(day).format('ddd')}</Text>
+                    <Text style={styles.perSmall}>{moment(day).format('MM-DD')}</Text>
+                </View>
+            )
+        })
+
+
+        return (<View style={styles.calendarHeader}>{wowday}</View>)
+    }
+
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            mainContainerScrollable: true,
+            roomTitleLeft: 10,
+            refreshing: false,
+            resevations: {},
+            days: [],
+            offset: {},
+        }
+
+        this.returnResevations = this.returnResevations.bind(this)
+        this.rooms = this.rooms.bind(this)
+        this.daysHeader = this.daysHeader.bind(this)
+    }
+
+
 
     render() {
 
-        let header = []
-        let table = []
-        let resevation = []
 
-        //生成列表头header
-        let days = formatdata.daysArray(this.props.startDay, this.props.endDay);
-        let headerCol = []
-        // 遍历日期取得表头
-        days.map((day) => {
-            headerCol.push(
-                <View style={styles.titlePer}  key={'h'+ day.format('YYMMDD')}>
-                    <Text style={styles.perBig}>{day.format('ddd')}</Text>
-                    <Text style={styles.perSmall}>{day.format('MM-DD')}</Text>
-                </View>
-            )
-            return false
-        })
-        header.push(
-            <ScrollView style={styles.scrollHeader} ref={'calHeader'} scrollEnabled={false} scrollEventThrottle={8}>
-                <View style={styles.calendarHeader}>
-                    {headerCol}
-                </View>
-            </ScrollView>
-        )
+        let days = formatdata.daysArray(this.props.startDay, this.props.endDay)
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}); //动态加载数据的一种算法，虽然看不懂，但是必须得用
+        let newDays = ds.cloneWithRows(days)
 
-        // 创建表格
-        if(this.props.rooms.totalCount === 0){
-            table.push(<View>暂无房源数据</View>)
-        }else{
-            // 遍历房源列表，获取每行表格
-            this.props.rooms.content.map((item) => {
 
-                // 如果房源id和当前选中的一致，则遍历；如果选择的是全部房源（等于null），则全部遍历
-                if(item.bnbRoomId === this.props.selectedRoom || this.props.selectedRoom === null){
-                // 房源标题
-                table.push(
-                    <Text
-                        key={item.bnbRoomId + 'name'}
-                        style={[
-                            styles.roomTitleText,
-                            {left: this.state.roomTitleLeft}
-                        ]}>
-                        {item.name}
-                    </Text>
 
-                )
-                // 行数据，根据时间区间创建，为每一个单元格设置id
-                let row = []
-                days.map((d) => {
-                    row.push(
-                        <View
-                            style={styles.perDay}
-                            ref={item.bnbRoomId + '-' + moment(d).format('YYMMDD').toString()}
-                            key={item.bnbRoomId + moment(d).format('YYMMDD')}></View>
-                    )
-                    return false
-                })
 
-                table.push(<View style={styles.dayRow}>{row}</View>)
 
-                return false
-                }
-            })
-        }
 
-    return (
+
+
+        return (
 
             <View style={styles.container} ref={'mainContainer'}>
 
-                {header}
 
-                <ScrollView
-                    style={styles.scrollView}
+
+                {/* {this.daysHeader(days)} */}
+
+                {this.rooms()}
+
+
+                <ListView
+
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this._onRefresh.bind(this)}
+                            title="从Airbnb同步日历..."
+                        />
+                    }
+                    horizontal={true}
+                    alwaysBounceVertical={true}
+                    ref={'calDays'}
+                    scrollEventThrottle={12}
                     onScroll={this._haha}
-                    scrollEventThrottle={3}
-                    showsHorizontalScrollIndicator={false}>
+                    dataSource={newDays}
+                    renderRow={(days, sectionId, rowId) =>
+                        <Calendardays
+                            data={days}
+                            sectionId={sectionId}
+                            rowId={rowId}
+                            rooms={this.props.rooms}
+                            // findResevation={this.findResevation}
+                        />
+                    }
+                    renderSectionHeader={this.daysHeader}
+                    renderFooter={this.returnResevations}
+                />
 
-                    <View ref={'hahah222'} >
-                        {table}
-                    </View>
-                    <View style={styles.activeDay}></View>
-                </ScrollView>
 
-        </View>
 
-    )
-}
+
+
+
+
+
+            </View>
+
+        )
+    }
 };
 
 export default Calendar;

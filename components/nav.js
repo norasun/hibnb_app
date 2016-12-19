@@ -15,7 +15,7 @@ const _alertWow = () => {
 const styles = StyleSheet.create({
     navbar: {
         backgroundColor: '#eee',
-        height: 56,
+        height: 52,
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        height: 56,
+        height: 52,
     },
     icon: {
         tintColor: '#999',
