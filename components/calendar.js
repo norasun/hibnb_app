@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     container: {
-        paddingTop: 74,
+        paddingTop: 64,
         backgroundColor: '#fff',
         flexDirection: 'column',
         justifyContent: "flex-start",
@@ -52,10 +52,12 @@ const styles = StyleSheet.create({
 
     calendarHeader:{
         flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         position: 'absolute',
         top: 0,
         left: 0,
-        height: 40,
+        height: 50,
         backgroundColor: '#fff',
     },
 
@@ -72,11 +74,13 @@ const styles = StyleSheet.create({
         height: 34,
         flex: 1,
         overflow: 'hidden',
-        borderRadius: 0,
+        borderRadius: 4,
         borderWidth: 1,
         borderColor: '#F77979',
         position: 'absolute',
         alignItems: 'center',
+        justifyContent: 'center',
+
     },
     resevationText: {
         fontSize: 10,
@@ -86,19 +90,19 @@ const styles = StyleSheet.create({
         marginBottom: 40,
     },
     roomText: {
-        fontSize: 12
+        fontSize: 12,
+        color: '#333'
     },
     roomsContainer: {
         position: 'absolute',
-        top: 50,
+        top: 125,
         left: 0,
+        right: 0,
+        bottom: 0,
+        paddingLeft: 5,
     },
     daysContainer: {
         position: 'relative',
-    },
-    headerContainer: {
-
-        flexDirection: 'row',
     },
     titlePer: {
         alignItems: 'center',
@@ -128,25 +132,9 @@ class Calendar extends Component {
 
     _haha = (e) => {
         if(this.refs.roomsContainer){
-            this.refs.roomsContainer.scrollTo({x: 0, y: e.nativeEvent.contentOffset.y, animated: false});
-        }
-        if(this.refs.calHeader){
-            this.refs.calHeader.scrollTo({y: 0, x: e.nativeEvent.contentOffset.x, animated: false});
+            this.refs.roomsContainer.scrollTo({x: e.nativeEvent.contentOffset.x <= 0 ? e.nativeEvent.contentOffset.x : 0, y: e.nativeEvent.contentOffset.y, animated: false});
         }
 
-
-
-
-    }
-    yesyes(){
-        alert(1)
-    }
-    _fixHeader = () => {
-        RCTUIManager.measure(findNodeHandle(this.refs.mainContainer), (x, y, width, height, pageX, pageY) => {
-            if(pageY <= -50){
-                this.setState({mainContainerScrollable: true})
-            }
-        });
     }
 
 
@@ -258,12 +246,6 @@ class Calendar extends Component {
         let newDays = ds.cloneWithRows(days)
 
 
-
-
-
-
-
-
         return (
 
             <View style={styles.container} ref={'mainContainer'}>
@@ -276,7 +258,7 @@ class Calendar extends Component {
 
 
                 <ListView
-
+                    style={{paddingBottom: 100}}
                     refreshControl={
                         <RefreshControl
                             refreshing={this.state.refreshing}

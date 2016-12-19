@@ -75,7 +75,7 @@ export class Calendardays extends React.Component{
 
 
         })
-        return (<View>{row}</View>)
+        return (<View style={{paddingTop: 30}}>{row}</View>)
     }
 
 
