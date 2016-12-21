@@ -15,7 +15,7 @@ import {
     RefreshControl,
 } from 'react-native'
 
-const RCTUIManager = require('NativeModules').UIManager;
+
 
 moment.updateLocale('cn', {
     weekdaysShort : ["日", "一", "二", "三", "四", "五", "六"]
@@ -27,9 +27,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     container: {
-        paddingTop: 64,
-        backgroundColor: '#fff',
+        marginTop: 64,
+        backgroundColor: '#f5f5f5',
         flexDirection: 'column',
+        flex: 1,
         justifyContent: "flex-start",
         alignItems: 'stretch',
     },
@@ -52,13 +53,11 @@ const styles = StyleSheet.create({
 
     calendarHeader:{
         flexDirection: 'row',
-        justifyContent: 'center',
         alignItems: 'center',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        height: 50,
         backgroundColor: '#fff',
+        height: 50,
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderColor: '#ccc',
     },
 
     roomTitleText: {
@@ -69,55 +68,91 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     resevation: {
-        backgroundColor: '#FBA994',
-        width: 50,
-        height: 34,
+        backgroundColor: '#F8C4C4',
+        width: 60,
+        height: 20,
         flex: 1,
         overflow: 'hidden',
         borderRadius: 4,
         borderWidth: 1,
         borderColor: '#F77979',
         position: 'absolute',
-        alignItems: 'center',
+        paddingLeft: 5,
         justifyContent: 'center',
-
     },
     resevationText: {
         fontSize: 10,
+        color: '#000',
+        overflow: 'hidden',
+        width: 300,
     },
     room: {
         height: 50,
-        marginBottom: 40,
+        marginBottom: 30,
     },
     roomText: {
         fontSize: 12,
-        color: '#333'
+        color: '#000'
     },
     roomsContainer: {
         position: 'absolute',
-        top: 125,
+        top: 0,
         left: 0,
         right: 0,
         bottom: 0,
+        paddingTop: 200,
         paddingLeft: 5,
+        backgroundColor: '#fff',
     },
     daysContainer: {
         position: 'relative',
     },
     titlePer: {
         alignItems: 'center',
-        width: 50,
-        borderRightWidth: 1,
-        borderColor: '#ddd'
+        width: 60,
+        borderRightWidth: StyleSheet.hairlineWidth,
+        borderColor: '#ccc'
     },
     perBig: {
         fontSize: 14,
+        color: '#000',
+        fontWeight: 'bold'
     },
     perSmall: {
         fontSize: 12,
-        color: '#888',
+        color: '#666',
         paddingTop: 4,
     },
+
+    sortContainer: {
+        flex: 1,
+        backgroundColor: '#ddd',
+        padding: 20,
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderColor: '#bbb',
+    },
+    selectButton: {
+        height: 40,
+        flex: 1,
+        backgroundColor: '#fff',
+        borderWidth: StyleSheet.hairlineWidth,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: '#aaa'
+    },
+    selectButtonStart: {
+        borderTopLeftRadius: 4,
+        borderTopRightRadius: 4,
+        borderBottomWidth: 0,
+    },
+    selectButtonEnd: {
+        borderBottomLeftRadius: 4,
+        borderBottomRightRadius: 4,
+    },
+    selectButtonText: {
+        fontSize: 13,
+        color: '#666'
+    }
 })
 
 let roomTitleLeft = 20
@@ -130,19 +165,29 @@ class Calendar extends Component {
         this.setState({refreshing: true});
     }
 
-    _haha = (e) => {
+    scrollRoomName(e){
         if(this.refs.roomsContainer){
             this.refs.roomsContainer.scrollTo({x: e.nativeEvent.contentOffset.x <= 0 ? e.nativeEvent.contentOffset.x : 0, y: e.nativeEvent.contentOffset.y, animated: false});
         }
-
+    }
+    scrollDaysHeader(e){
+        if(this.refs.daysHeader){
+            this.refs.daysHeader.scrollTo({x: e.nativeEvent.contentOffset.x, y: 0, animated: false});
+        }
     }
 
 
     returnResevations(){
         let resevations = []
-        let top = 0
+        let top = 80
+        let roomIndex = {}
+        let i = 1
+        this.props.rooms.content.map((room) => {
+            roomIndex[room.bnbRoomId] = i
+            i += 1
+        })
         if(this.props.calendar.totalCount !== 0){
-            let i = 1
+
             this.props.calendar.content.map((item)=>{
 
                 let resevationData = JSON.stringify({"relationId": item.bnbRoomId + '-' + moment(item.checkout).format('YYMMDD').toString()})
@@ -152,9 +197,9 @@ class Calendar extends Component {
                         key={'resevation' + item.bnbRoomId + moment(item.checkin).format('YYYYMMDD').toString()}
                         ref={'resevation' + item.bnbRoomId + moment(item.checkin).format('YYYYMMDD').toString()}
                         style={[styles.resevation, {
-                            left: 50 * parseInt(moment(item.checkin).diff(moment(this.props.startDay), 'days')),
-                            top: top,
-                            width: 45 * parseInt(moment(item.checkout).diff(moment(item.checkin), 'days'))
+                            left: 60 * parseInt(moment(item.checkin).diff(moment(this.props.startDay), 'days')) + 60/2 + 5,
+                            top: top * roomIndex[item.bnbRoomId] + 5,
+                            width: 60 * parseInt(moment(item.checkout).diff(moment(item.checkin), 'days')) - 10
                         }]}
                         onTouchStart={this.yesyes}
                     >
@@ -162,12 +207,8 @@ class Calendar extends Component {
                     </View>
                 )
 
-                top = 90 * i
 
-                if(i === this.props.rooms.totalCount){
-                    i = 1
-                }
-                i += 1
+
                 return false
             })
         }
@@ -177,8 +218,12 @@ class Calendar extends Component {
     rooms(){
         let rooms = []
         let roomsContainer = []
+        let roomIndex = {}
         if(this.props.rooms.totalCount !== 0){
+            let i = 1
             this.props.rooms.content.map((room) => {
+                roomIndex[room.bnbRoomId] = i
+                i += 1
                 rooms.push(
                     <View style={styles.room}>
                         <Text style={styles.roomText}>
@@ -189,17 +234,14 @@ class Calendar extends Component {
             })
         }
         roomsContainer.push(
-            <ScrollView
+            <View
                 style={styles.roomsContainer}
                 ref={'roomsContainer'}
-                scrollEventThrottle={12}
-                horizontal={false}
-                scrollEnabled={false}
-                bounces={false}
             >
                 {rooms}
-            </ScrollView>)
-            return roomsContainer
+            </View>)
+
+        return roomsContainer
     }
 
     daysHeader(days, sectionId){
@@ -216,7 +258,17 @@ class Calendar extends Component {
         })
 
 
-        return (<View style={styles.calendarHeader}>{wowday}</View>)
+        return (
+            <ScrollView
+                contentContainerStyle={styles.calendarHeader}
+                horizontal={true}
+                ref={'daysHeader'}
+                scrollEnabled={false}
+                scrollEventThrottle={8}
+            >
+                {wowday}
+            </ScrollView>
+        )
     }
 
 
@@ -228,12 +280,15 @@ class Calendar extends Component {
             refreshing: false,
             resevations: {},
             days: [],
+            roomIndex: {},
             offset: {},
         }
 
         this.returnResevations = this.returnResevations.bind(this)
         this.rooms = this.rooms.bind(this)
         this.daysHeader = this.daysHeader.bind(this)
+        this.scrollRoomName = this.scrollRoomName.bind(this)
+        this.scrollDaysHeader = this.scrollDaysHeader.bind(this)
     }
 
 
@@ -252,13 +307,14 @@ class Calendar extends Component {
 
 
 
-                {/* {this.daysHeader(days)} */}
-
-                {this.rooms()}
 
 
-                <ListView
-                    style={{paddingBottom: 100}}
+
+
+                <ScrollView
+                    stickyHeaderIndices={[2]}
+                    // onScroll={this.scrollRoomName}
+                    scrollEventThrottle={12}
                     refreshControl={
                         <RefreshControl
                             refreshing={this.state.refreshing}
@@ -266,31 +322,47 @@ class Calendar extends Component {
                             title="从Airbnb同步日历..."
                         />
                     }
-                    horizontal={true}
-                    alwaysBounceVertical={true}
-                    ref={'calDays'}
-                    scrollEventThrottle={12}
-                    onScroll={this._haha}
-                    dataSource={newDays}
-                    renderRow={(days, sectionId, rowId) =>
-                        <Calendardays
-                            data={days}
-                            sectionId={sectionId}
-                            rowId={rowId}
-                            rooms={this.props.rooms}
-                            // findResevation={this.findResevation}
-                        />
-                    }
-                    renderSectionHeader={this.daysHeader}
-                    renderFooter={this.returnResevations}
-                />
+                >
+                    {this.rooms()}
+                    <View style={styles.sortContainer}>
+                        <View style={[styles.selectButton, styles.selectButtonStart]}>
+                            <Text style={styles.selectButtonText}>
+                                2016.10.22 / 2016.12.23
+                            </Text>
+                        </View>
+                        <View style={[styles.selectButton, styles.selectButtonEnd]}>
+                            <Text style={styles.selectButtonText}>
+                                全部房源
+                            </Text>
+                        </View>
+                    </View>
+                    {this.daysHeader(days)}
 
+                    <ListView
+                        style={{paddingBottom: 200}}
 
+                        horizontal={true}
+                        // bounces={false}
+                        alwaysBounceHorizontal={true}
+                        alwaysBounceVertical={false}
 
-
-
-
-
+                        ref={'calDays'}
+                        scrollEventThrottle={12}
+                        onScroll={this.scrollDaysHeader}
+                        dataSource={newDays}
+                        renderRow={(days, sectionId, rowId) =>
+                            <Calendardays
+                                data={days}
+                                sectionId={sectionId}
+                                rowId={rowId}
+                                rooms={this.props.rooms}
+                                // findResevation={this.findResevation}
+                            />
+                        }
+                        // renderSectionHeader={this.daysHeader}
+                        renderFooter={this.returnResevations}
+                    />
+                </ScrollView>
 
             </View>
 

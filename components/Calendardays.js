@@ -17,11 +17,11 @@ const styles = StyleSheet.create({
         paddingTop: 4,
     },
     perDay: {
-        width: 50,
-        height: 40,
+        width: 60,
+        height: 30,
         borderRightWidth: StyleSheet.hairlineWidth,
         backgroundColor: '#f2f2f2',
-        borderColor: '#bbb',
+        borderColor: '#aaa',
         marginTop: 50,
     },
 })
@@ -60,7 +60,6 @@ export class Calendardays extends React.Component{
         let row = []
         this.props.rooms.content.map((room) => {
 
-            let resevation = []
 
             row.push(
                     <View
@@ -75,7 +74,7 @@ export class Calendardays extends React.Component{
 
 
         })
-        return (<View style={{paddingTop: 30}}>{row}</View>)
+        return (<View>{row}</View>)
     }
 
 

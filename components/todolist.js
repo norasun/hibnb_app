@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     },
     viewContent: {
         marginTop: 64,
-        marginBottom: 50,
     },
 });
 import Loading from './loading.js';
@@ -136,7 +135,6 @@ class Todolist extends Component {
                   scrollEventThrottle={12}
                   style={styles.viewContent}
                   key='listviewtodolist'
-
                   dataSource={this.state.calendar_data}
                   renderRow={(data) => <Todolistrow {...data} />}
 
