@@ -10,7 +10,8 @@ import {
     Image,
     ScrollView,
     TouchableWithoutFeedback,
-    findNodeHandle,
+    Animated,
+    StatusBar,
     ListView,
     RefreshControl,
 } from 'react-native'
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     container: {
-        marginTop: 64,
+        marginTop: 0,
         backgroundColor: '#f5f5f5',
         flexDirection: 'column',
         flex: 1,
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#fff',
-        height: 50,
+        height: 64,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderColor: '#ccc',
     },
@@ -68,14 +69,14 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     resevation: {
-        backgroundColor: '#F8C4C4',
+        backgroundColor: 'rgba(251, 168, 148, .7)',
         width: 60,
-        height: 20,
+        height: 40,
         flex: 1,
         overflow: 'hidden',
         borderRadius: 4,
         borderWidth: 1,
-        borderColor: '#F77979',
+        borderColor: '#E66240',
         position: 'absolute',
         paddingLeft: 5,
         justifyContent: 'center',
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     },
     room: {
         height: 50,
-        marginBottom: 30,
+        marginBottom: 40,
     },
     roomText: {
         fontSize: 12,
@@ -100,28 +101,12 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-        paddingTop: 200,
+        paddingTop: 210,
         paddingLeft: 5,
         backgroundColor: '#fff',
     },
     daysContainer: {
         position: 'relative',
-    },
-    titlePer: {
-        alignItems: 'center',
-        width: 60,
-        borderRightWidth: StyleSheet.hairlineWidth,
-        borderColor: '#ccc'
-    },
-    perBig: {
-        fontSize: 14,
-        color: '#000',
-        fontWeight: 'bold'
-    },
-    perSmall: {
-        fontSize: 12,
-        color: '#666',
-        paddingTop: 4,
     },
 
     sortContainer: {
@@ -152,6 +137,35 @@ const styles = StyleSheet.create({
     selectButtonText: {
         fontSize: 13,
         color: '#666'
+    },
+    analytics: {
+        height: 49,
+        borderTopWidth: StyleSheet.hairlineWidth,
+        borderColor: '#ccc',
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: '#fff',
+
+    },
+    analyticsColumn: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    analyticsColumnTextBig:{
+        fontSize: 20,
+        color: '#000',
+        fontWeight: '200',
+    },
+    analyticsColumnTextSmall: {
+        fontSize: 10,
+        color: '#666'
     }
 })
 
@@ -179,7 +193,7 @@ class Calendar extends Component {
 
     returnResevations(){
         let resevations = []
-        let top = 80
+        let top = 50
         let roomIndex = {}
         let i = 1
         this.props.rooms.content.map((room) => {
@@ -198,7 +212,7 @@ class Calendar extends Component {
                         ref={'resevation' + item.bnbRoomId + moment(item.checkin).format('YYYYMMDD').toString()}
                         style={[styles.resevation, {
                             left: 60 * parseInt(moment(item.checkin).diff(moment(this.props.startDay), 'days')) + 60/2 + 5,
-                            top: top * roomIndex[item.bnbRoomId] + 5,
+                            top: 90 * roomIndex[item.bnbRoomId] - 40,
                             width: 60 * parseInt(moment(item.checkout).diff(moment(item.checkin), 'days')) - 10
                         }]}
                         onTouchStart={this.yesyes}
@@ -264,7 +278,7 @@ class Calendar extends Component {
                 horizontal={true}
                 ref={'daysHeader'}
                 scrollEnabled={false}
-                scrollEventThrottle={8}
+
             >
                 {wowday}
             </ScrollView>
@@ -282,6 +296,7 @@ class Calendar extends Component {
             days: [],
             roomIndex: {},
             offset: {},
+            scrollY:  new Animated.Value(0)
         }
 
         this.returnResevations = this.returnResevations.bind(this)
@@ -291,7 +306,10 @@ class Calendar extends Component {
         this.scrollDaysHeader = this.scrollDaysHeader.bind(this)
     }
 
+    componentDidMount(){
 
+        // this.refs.mainScroll.scrollTo({x:0, y: 160, animated: true})
+    }
 
     render() {
 
@@ -306,15 +324,20 @@ class Calendar extends Component {
             <View style={styles.container} ref={'mainContainer'}>
 
 
-
-
-
-
+                <StatusBar
+                    barStyle="light-content"
+                    hidden={true}
+                />
 
                 <ScrollView
                     stickyHeaderIndices={[2]}
                     // onScroll={this.scrollRoomName}
-                    scrollEventThrottle={12}
+                    scrollEventThrottle={10}
+                    contentOffset={{x:0, y: 121}}
+                    ref={'mainScroll'}
+                    onScroll={Animated.event(
+                        [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}]
+                    )}
                     refreshControl={
                         <RefreshControl
                             refreshing={this.state.refreshing}
@@ -336,7 +359,19 @@ class Calendar extends Component {
                             </Text>
                         </View>
                     </View>
-                    {this.daysHeader(days)}
+
+                    <ListView
+                        contentContainerStyle={styles.calendarHeader}
+                        horizontal={true}
+                        dataSource={newDays}
+                        scrollEnabled={false}
+                        scrollEventThrottle={10}
+                        pageSize={60}
+                        renderRow={(days) => <Calendarheader days={days} />}
+                        ref={'daysHeader'}
+                    />
+
+                    {/* {this.daysHeader(days)} */}
 
                     <ListView
                         style={{paddingBottom: 200}}
@@ -364,6 +399,35 @@ class Calendar extends Component {
                     />
                 </ScrollView>
 
+
+                {/* <View style={styles.analytics}>
+
+                    <View style={styles.analyticsColumn}>
+                    <Text style={styles.analyticsColumnTextBig}>
+                    90%
+                    </Text>
+                    <Text style={styles.analyticsColumnTextSmall}>
+                    入住率
+                    </Text>
+                    </View>
+                    <View style={styles.analyticsColumn}>
+                    <Text style={styles.analyticsColumnTextBig}>
+                    320
+                    </Text>
+                    <Text style={styles.analyticsColumnTextSmall}>
+                    间天
+                    </Text>
+                    </View>
+                    <View style={styles.analyticsColumn}>
+                    <Text style={styles.analyticsColumnTextBig}>
+                    32
+                    </Text>
+                    <Text style={styles.analyticsColumnTextSmall}>
+                    接待人组
+                    </Text>
+                    </View>
+
+                </View> */}
             </View>
 
         )

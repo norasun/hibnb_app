@@ -10,7 +10,9 @@ import {
   SegmentedControlIOS,
 } from 'react-native'
 
-
+const HEADER_MAX_HEIGHT = 64
+const HEADER_MIN_HEIGHT = 0
+const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT
 
 const styles = StyleSheet.create({
     container: {
@@ -28,7 +30,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderColor: '#999'
+        borderColor: '#999',
+        opacity: 0,
     },
     navContainer: {
         flex: 1,
@@ -86,39 +89,6 @@ const styles = StyleSheet.create({
         color: '#000',
         fontWeight: '500'
     },
-    sortContainer: {
-        flex: 1,
-        position: 'absolute',
-        top: 64,
-        left: 0,
-        right: 0,
-        backgroundColor: '#f5f5f5',
-        padding: 20,
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        borderColor: '#bbb',
-    },
-    selectButton: {
-        height: 40,
-        flex: 1,
-        backgroundColor: '#fff',
-        borderWidth: StyleSheet.hairlineWidth,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderColor: '#bbb'
-    },
-    selectButtonStart: {
-        borderTopLeftRadius: 4,
-        borderTopRightRadius: 4,
-        borderBottomWidth: 0,
-    },
-    selectButtonEnd: {
-        borderBottomLeftRadius: 4,
-        borderBottomRightRadius: 4,
-    },
-    selectButtonText: {
-        fontSize: 13,
-        color: '#666'
-    }
 
 });
 
@@ -141,8 +111,15 @@ export default class Sort extends Component{
 
     }
     render() {
+        const scrollY = this.props.scrollY
+        const headerHeight = scrollY.interpolate({
+            inputRange: [0, HEADER_SCROLL_DISTANCE],
+            outputRange: [0, -HEADER_SCROLL_DISTANCE],
+            extrapolate: 'clamp',
+        });
+
         return (
-            <View style={styles.container} blurRadius={10}>
+            <Animated.View style={[styles.container, {top: headerHeight}]} blurRadius={10}>
 
                 <View style={styles.navContainer}>
                     <View style={styles.leftElement}></View>
@@ -179,7 +156,7 @@ export default class Sort extends Component{
                 </View>
 
 
-            </View>
+            </Animated.View>
 
         )
     }

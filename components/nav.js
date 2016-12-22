@@ -15,53 +15,55 @@ const _alertWow = () => {
 const styles = StyleSheet.create({
     navbar: {
         backgroundColor: '#eee',
-        height: 52,
+        height: 49,
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'center',
         zIndex: 2,
         borderTopWidth: StyleSheet.hairlineWidth,
         borderColor: '#ccc',
-        opacity: 0,
+        opacity: 1,
     },
     per: {
-        flex:1,
+        flex:2,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        height: 52,
+        height: 49,
     },
     icon: {
-        tintColor: '#999',
+        tintColor: '#888',
         alignItems: 'center',
     },
     iconActive: {
         tintColor: '#000',
         alignItems: 'center',
-    }
+    },
 })
 
 const navData = [
-    // {
-    //     name: 'HOME',
-    //     icon: require('../img/todolist.png'),
-    // },
     {
         name: 'HOME',
+        icon: require('../img/todolist.png'),
+    },
+    {
+        name: 'PULSE',
         icon: require('../img/calendar.png'),
     },
-    // {
-    //     name: 'ADD',
-    //     icon: require('../img/add.png'),
-    // },
+
     // {
     //     name: 'PULSE',
     //     icon: require('../img/pulse.png'),
     // },
     {
+        name: 'ADD',
+        icon: require('../img/add.png'),
+    },
+    {
         name: 'SETTINGS',
         icon: require('../img/profile.png'),
-    }
+    },
+
 ];
 
 const Nav = (props) => {
@@ -86,6 +88,7 @@ const Nav = (props) => {
     return (
 
     <View style={styles.navbar}>
+
         {navView}
     </View>
 

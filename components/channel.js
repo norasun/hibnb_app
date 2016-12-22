@@ -1,5 +1,5 @@
 import React from 'react';
-
+import moment from 'moment'
 import {
   StyleSheet,
   Text,
@@ -50,7 +50,15 @@ const Nav = (props) => {
             name: 'PULSE',
             active: false,
             loaded: false,
-            content: <Calendar key="calendarhaha" appState={props.appState} dispatch = { props.dispatch } />,
+            content: <Calendar key="calendarhaha"
+                appState={props.appState}
+                calendar={props.appState.AppData.calendar}
+                rooms={props.appState.AppData.rooms}
+                selectedRoom={props.appState.AppData.selectedRoom.roomId}
+                startDay={moment(props.appState.AppData.date.startDay)}
+                endDay={moment(props.appState.AppData.date.endDay)}
+
+                     />,
         },
         {
             name: 'ADD',

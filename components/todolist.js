@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     viewContent: {
-        marginTop: 64,
+        marginTop: 20,
     },
 });
 import Loading from './loading.js';
@@ -129,9 +129,7 @@ class Todolist extends Component {
                       />
                   }
                   enableEmptySections={true}
-                  onScroll={Animated.event(
-                      [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}]
-                  )}
+
                   scrollEventThrottle={12}
                   style={styles.viewContent}
                   key='listviewtodolist'
@@ -183,6 +181,7 @@ class Todolist extends Component {
                         startDay={moment(this.props.appState.AppData.date.startDay)}
                         endDay={moment(this.props.appState.AppData.date.endDay)}
                         toggleView={this.toggleView}
+                        scrollY={this.state.scrollY}
                     />
                 </View>
 
