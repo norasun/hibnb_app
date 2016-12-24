@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         zIndex: 2,
         borderTopWidth: StyleSheet.hairlineWidth,
         borderColor: '#ccc',
-        opacity: 1,
+        opacity: 0,
     },
     per: {
         flex:2,

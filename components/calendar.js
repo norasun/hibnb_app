@@ -14,9 +14,12 @@ import {
     StatusBar,
     ListView,
     RefreshControl,
+    PanResponder
 } from 'react-native'
 
-
+const HEADER_MAX_HEIGHT = 64
+const HEADER_MIN_HEIGHT = 0
+const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT
 
 moment.updateLocale('cn', {
     weekdaysShort : ["日", "一", "二", "三", "四", "五", "六"]
@@ -28,7 +31,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     container: {
-        marginTop: 0,
+        marginTop: 64,
         backgroundColor: '#f5f5f5',
         flexDirection: 'column',
         flex: 1,
@@ -56,7 +59,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#fff',
-        height: 64,
+        height: 50,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderColor: '#ccc',
     },
@@ -101,7 +104,7 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-        paddingTop: 210,
+        paddingTop: 205,
         paddingLeft: 5,
         backgroundColor: '#fff',
     },
@@ -185,9 +188,9 @@ class Calendar extends Component {
         }
     }
     scrollDaysHeader(e){
-        if(this.refs.daysHeader){
+
             this.refs.daysHeader.scrollTo({x: e.nativeEvent.contentOffset.x, y: 0, animated: false});
-        }
+
     }
 
 
@@ -296,7 +299,8 @@ class Calendar extends Component {
             days: [],
             roomIndex: {},
             offset: {},
-            scrollY:  new Animated.Value(0)
+            scrollY:  new Animated.Value(0),
+            touchStart: moment().format('x'),
         }
 
         this.returnResevations = this.returnResevations.bind(this)
@@ -306,7 +310,21 @@ class Calendar extends Component {
         this.scrollDaysHeader = this.scrollDaysHeader.bind(this)
     }
 
-    componentDidMount(){
+    componentWillMount(){
+
+        // this._panResponder = PanResponder.create({
+        //     onPanResponderGrant: (e, g) => {
+        //         a = e.nativeEvent.timestamp
+        //     },
+        //     onPanResponderMove: (evt, g) => {
+        //         console.log('滑动：' + g.dy);
+        //         console.log('速度' + g.vy);
+        //         console.log('次数' + g.numberActiveTouches);
+        //         if(parseInt(g.vy) > 0.2){
+        //             this.props.changeNav(true)
+        //         }
+        //       },
+        // })
 
         // this.refs.mainScroll.scrollTo({x:0, y: 160, animated: true})
     }
@@ -321,13 +339,13 @@ class Calendar extends Component {
 
         return (
 
-            <View style={styles.container} ref={'mainContainer'}>
+            <Animated.View style={[styles.container]} ref={'mainContainer'}>
 
 
-                <StatusBar
+                {/* <StatusBar
                     barStyle="light-content"
-                    hidden={true}
-                />
+                    // hidden={true}
+                /> */}
 
                 <ScrollView
                     stickyHeaderIndices={[2]}
@@ -335,9 +353,11 @@ class Calendar extends Component {
                     scrollEventThrottle={10}
                     contentOffset={{x:0, y: 121}}
                     ref={'mainScroll'}
-                    onScroll={Animated.event(
-                        [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}]
-                    )}
+                    // onScroll={Animated.event(
+                    //     [{nativeEvent: {contentOffset: {y: this.props.scrollY}}}]
+                    // )}
+                    // {...this._panResponder.panHandlers}
+
                     refreshControl={
                         <RefreshControl
                             refreshing={this.state.refreshing}
@@ -366,7 +386,7 @@ class Calendar extends Component {
                         dataSource={newDays}
                         scrollEnabled={false}
                         scrollEventThrottle={10}
-                        pageSize={60}
+                        initialListSize={100}
                         renderRow={(days) => <Calendarheader days={days} />}
                         ref={'daysHeader'}
                     />
@@ -428,7 +448,7 @@ class Calendar extends Component {
                     </View>
 
                 </View> */}
-            </View>
+            </Animated.View>
 
         )
     }

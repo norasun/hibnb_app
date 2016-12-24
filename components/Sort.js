@@ -8,8 +8,10 @@ import {
   Animated,
   StatusBar,
   SegmentedControlIOS,
+  NavigatorIOS,
+  Navigator,
 } from 'react-native'
-
+import Calendar from './calendar.js'
 const HEADER_MAX_HEIGHT = 64
 const HEADER_MIN_HEIGHT = 0
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderColor: '#999',
-        opacity: 0,
+        opacity: 1,
     },
     navContainer: {
         flex: 1,
@@ -52,6 +54,8 @@ const styles = StyleSheet.create({
     },
     leftElement: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'flex-start'
     },
     segmentsContainer: {
         flex: 4,
@@ -111,18 +115,31 @@ export default class Sort extends Component{
 
     }
     render() {
-        const scrollY = this.props.scrollY
-        const headerHeight = scrollY.interpolate({
-            inputRange: [0, HEADER_SCROLL_DISTANCE],
-            outputRange: [0, -HEADER_SCROLL_DISTANCE],
-            extrapolate: 'clamp',
-        });
+
+        // const scrollY = this.props.scrollY
+        //
+        // const headerHeight = scrollY.interpolate({
+        //     inputRange: [0, 1],
+        //     outputRange: [0, -HEADER_SCROLL_DISTANCE],
+        //     extrapolate: 'clamp',
+        // });
+        //
+        // const barStyle = scrollY.interpolate({
+        //     inputRange: [121, 121+64],
+        //     outputRange: [true, false]
+        //
+        // });
+
 
         return (
-            <Animated.View style={[styles.container, {top: headerHeight}]} blurRadius={10}>
+            <Animated.View style={[styles.container]}>
+
+
 
                 <View style={styles.navContainer}>
-                    <View style={styles.leftElement}></View>
+                    <View style={styles.leftElement}>
+                        <Image source={require('../img/todolist.png')} style={{tintColor: '#888', width: 34, height: 34,}} />
+                    </View>
                     <View style={styles.segmentsContainer}>
                         {/* <SegmentedControlIOS
                             tintColor={'#333'}
@@ -158,6 +175,56 @@ export default class Sort extends Component{
 
             </Animated.View>
 
+            // <NavigatorIOS
+            //     navigationBarHidden={false}
+            //
+            //     initialRoute={{
+            //         tintColor: '#888',
+            //         // titleImage: require('../img/logo.png'),
+            //         title: '入住清单',
+            //         leftButtonIcon: require('../img/todolist.png'),
+            //         rightButtonIcon: require('../img/calendar.png'),
+            //         component: Calendar,
+            //         passProps: {
+            //             appState: this.props.appState,
+            //             calendar: this.props.appState.AppData.calendar,
+            //             rooms: this.props.appState.AppData.rooms,
+            //             selectedRoom: this.props.appState.AppData.selectedRoom.roomId,
+            //             startDay: moment(this.props.appState.AppData.date.startDay),
+            //             endDay: moment(this.props.appState.AppData.date.endDay)
+            //         },
+            //     }}
+            //     style={{flex: 1}}
+            // />
+
+
+            // <Navigator
+            //
+            //     renderScene={(route, navigator) =>
+            //         <Calendar
+            //             appState={this.props.appState}
+            //             calendar={this.props.appState.AppData.calendar}
+            //             rooms={this.props.appState.AppData.rooms}
+            //             selectedRoom={this.props.appState.AppData.selectedRoom.roomId}
+            //             startDay={moment(this.props.appState.AppData.date.startDay)}
+            //             endDay={moment(this.props.appState.AppData.date.endDay)} />
+            //     }
+            //     navigationBar={
+            //         <Navigator.NavigationBar
+            //
+            //             routeMapper={{
+            //                 LeftButton: (route, navigator, index, navState) =>
+            //                 { return (<Text>Cancel</Text>); },
+            //                 RightButton: (route, navigator, index, navState) =>
+            //                 { return (<Text>Done</Text>); },
+            //                 Title: (route, navigator, index, navState) =>
+            //                 { return (<Text>Awesome Nav Bar</Text>); },
+            //             }}
+            //             style={{backgroundColor: '#f2f2f2', flex: 1, justifyContent: 'center', alignItems: 'center', borderBottomWidth: 1, borderColor: '#ccc'}}
+            //         />
+            //     }
+            //     navigationBarHidden={true}
+            // />
         )
     }
 }

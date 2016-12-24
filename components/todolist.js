@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     viewContent: {
-        marginTop: 20,
+        marginTop: 64,
     },
 });
 import Loading from './loading.js';
@@ -58,6 +58,12 @@ class Todolist extends Component {
           scrollY: new Animated.Value(0),
       }
       this.toggleView = this.toggleView.bind(this)
+      this.updateScrollY = this.updateScrollY.bind(this)
+      this.changeNav = this.changeNav.bind(this)
+    }
+
+    updateScrollY(y){
+        this.setState({scrollY: y})
     }
 
     _toggleAddWindow = (state) => {
@@ -99,6 +105,12 @@ class Todolist extends Component {
         this.setState({viewId: viewId})
     }
 
+    changeNav(state){
+        if(state){
+            this.setState({scrollY: 1})
+        }
+    }
+
     _renderCalender = () => {
         return (
             <Calendar
@@ -107,7 +119,10 @@ class Todolist extends Component {
                 rooms={this.props.appState.AppData.rooms}
                 selectedRoom={this.props.appState.AppData.selectedRoom.roomId}
                 startDay={moment(this.props.appState.AppData.date.startDay)}
-                endDay={moment(this.props.appState.AppData.date.endDay)} />
+                endDay={moment(this.props.appState.AppData.date.endDay)}
+                scrollY={this.state.scrollY}
+                changeNav={this.changeNav}
+            />
         )
     }
 
@@ -177,7 +192,7 @@ class Todolist extends Component {
                     {viewContent}
 
                     <Sort
-
+                        appState={this.props.appState}
                         startDay={moment(this.props.appState.AppData.date.startDay)}
                         endDay={moment(this.props.appState.AppData.date.endDay)}
                         toggleView={this.toggleView}

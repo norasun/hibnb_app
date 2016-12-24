@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   checkoutIcon: {
     width: 14,
     height: 14,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 2,
     borderColor: '#aaa',
     backgroundColor: '#aaa',
     borderRadius: 20,
@@ -53,15 +53,15 @@ const styles = StyleSheet.create({
   checkinIcon: {
     width: 14,
     height: 14,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: '#3DEAA9',
+    borderWidth: 2,
+    borderColor: '#00C156',
     backgroundColor: '#3DEAA9',
     borderRadius: 20,
   },
   noCheck: {
     width: 14,
     height: 14,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 2,
     borderColor: '#999',
     borderRadius: 20,
   }
