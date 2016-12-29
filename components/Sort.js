@@ -43,14 +43,14 @@ const styles = StyleSheet.create({
         top: 0,
         left: 0,
         right: 0,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#9DFBED',
         paddingLeft: 20,
         paddingRight: 20,
         paddingTop: 20,
         justifyContent: 'space-between',
         alignItems: 'center',
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderColor: '#999'
+        borderColor: '#9DFBED'
     },
     leftElement: {
         flex: 1,
@@ -80,16 +80,16 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        borderBottomWidth: 1,
+        borderBottomWidth: 0,
         borderColor: '#000',
     },
     thinNavItemText: {
-        fontSize: 16,
-        fontWeight: '300',
-        color: '#777',
+        fontSize: 18,
+        fontWeight: '400',
+        color: '#02B59C',
     },
     thinNavItemTextActive: {
-        fontSize: 16,
+        fontSize: 18,
         color: '#000',
         fontWeight: '500'
     },
@@ -138,7 +138,7 @@ export default class Sort extends Component{
 
                 <View style={styles.navContainer}>
                     <View style={styles.leftElement}>
-                        <Image source={require('../img/todolist.png')} style={{tintColor: '#888', width: 34, height: 34,}} />
+                        <Image source={require('../img/todolist.png')} style={{tintColor: '#02B59C', width: 34, height: 34,}} />
                     </View>
                     <View style={styles.segmentsContainer}>
                         {/* <SegmentedControlIOS
@@ -168,7 +168,7 @@ export default class Sort extends Component{
                     </View>
 
                     <View style={styles.create} >
-                        <Image source={require('../img/create.png')} style={{width: 20, height: 20}} />
+                        <Image source={require('../img/create.png')} style={{width: 20, height: 20, tintColor: '#02B59C'}} />
                     </View>
                 </View>
 

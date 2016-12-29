@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     titlePer: {
         alignItems: 'center',
         width: 60,
-        borderRightWidth: StyleSheet.hairlineWidth,
+        borderRightWidth: 0,
         borderColor: '#555'
     },
     perBig: {
@@ -21,12 +21,17 @@ const styles = StyleSheet.create({
     },
     perDay: {
         width: 60,
-        height: 40,
+        height: 60,
         borderRightWidth: StyleSheet.hairlineWidth,
-        backgroundColor: '#eee',
-        borderColor: '#aaa',
+        borderColor: '#bbb',
         marginTop: 50,
+        paddingTop: 10,
     },
+    perDayContent: {
+        width: 59,
+        height: 40,
+        backgroundColor: '#f5f5f5'
+    }
 })
 
 export const Calendarheader = (props) => {
@@ -70,6 +75,7 @@ export class Calendardays extends React.Component{
                         key={'roomday' + room.bnbRoomId + moment(day).format('YYYYMMDD').toString()}
                         ref={'roomday' + room.bnbRoomId + moment(day).format('YYYYMMDD').toString()}
                     >
+                        <View style={styles.perDayContent}></View>
                     </View>
 
             )

@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
         height: 50,
-        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomWidth: 0,
         borderColor: '#ccc',
     },
 
@@ -72,31 +72,31 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     resevation: {
-        backgroundColor: 'rgba(251, 168, 148, .7)',
+        backgroundColor: '#00C7AA',
         width: 60,
         height: 40,
         flex: 1,
         overflow: 'hidden',
         borderRadius: 4,
         borderWidth: 1,
-        borderColor: '#E66240',
+        borderColor: '#00C7AA',
         position: 'absolute',
         paddingLeft: 5,
         justifyContent: 'center',
     },
     resevationText: {
         fontSize: 10,
-        color: '#000',
+        color: '#fff',
         overflow: 'hidden',
         width: 300,
     },
     room: {
         height: 50,
-        marginBottom: 40,
+        marginBottom: 60,
     },
     roomText: {
         fontSize: 12,
-        color: '#000'
+        color: '#888'
     },
     roomsContainer: {
         position: 'absolute',
@@ -215,7 +215,7 @@ class Calendar extends Component {
                         ref={'resevation' + item.bnbRoomId + moment(item.checkin).format('YYYYMMDD').toString()}
                         style={[styles.resevation, {
                             left: 60 * parseInt(moment(item.checkin).diff(moment(this.props.startDay), 'days')) + 60/2 + 5,
-                            top: 90 * roomIndex[item.bnbRoomId] - 40,
+                            top: 110 * roomIndex[item.bnbRoomId] - 50,
                             width: 60 * parseInt(moment(item.checkout).diff(moment(item.checkin), 'days')) - 10
                         }]}
                         onTouchStart={this.yesyes}
@@ -394,7 +394,7 @@ class Calendar extends Component {
                     {/* {this.daysHeader(days)} */}
 
                     <ListView
-                        style={{paddingBottom: 200}}
+                        style={{paddingBottom: 50}}
 
                         horizontal={true}
                         // bounces={false}
