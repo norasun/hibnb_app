@@ -10,6 +10,7 @@ import {
   SegmentedControlIOS,
   NavigatorIOS,
   Navigator,
+  TabBarIOS,
 } from 'react-native'
 import Calendar from './calendar.js'
 const HEADER_MAX_HEIGHT = 64
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderColor: '#999',
-        opacity: 1,
+        opacity: 0,
     },
     navContainer: {
         flex: 1,
@@ -43,14 +44,14 @@ const styles = StyleSheet.create({
         top: 0,
         left: 0,
         right: 0,
-        backgroundColor: '#9DFBED',
+        backgroundColor: '#B9FEF4',
         paddingLeft: 20,
         paddingRight: 20,
         paddingTop: 20,
         justifyContent: 'space-between',
         alignItems: 'center',
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderColor: '#9DFBED'
+        borderColor: '#93BAB4'
     },
     leftElement: {
         flex: 1,
@@ -80,16 +81,16 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        borderBottomWidth: 0,
+        borderBottomWidth: StyleSheet.hairlineWidth,
         borderColor: '#000',
     },
     thinNavItemText: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: '400',
         color: '#02B59C',
     },
     thinNavItemTextActive: {
-        fontSize: 18,
+        fontSize: 16,
         color: '#000',
         fontWeight: '500'
     },
@@ -132,70 +133,72 @@ export default class Sort extends Component{
 
 
         return (
-            <Animated.View style={[styles.container]}>
-
-
-
-                <View style={styles.navContainer}>
-                    <View style={styles.leftElement}>
-                        <Image source={require('../img/todolist.png')} style={{tintColor: '#02B59C', width: 34, height: 34,}} />
-                    </View>
-                    <View style={styles.segmentsContainer}>
-                        {/* <SegmentedControlIOS
-                            tintColor={'#333'}
-                            values={['清单', '日历']}
-                            selectedIndex={this.state.selectedIndex}
-                            onChange={(event) => {
-                            this.setState({selectedIndex: event.nativeEvent.selectedSegmentIndex});
-                            this.props.toggleView(event.nativeEvent.selectedSegmentIndex)
-                            }}
-
-                        /> */}
-                        <View style={styles.thinNav}>
-                            <View style={[this.state.selectedIndex === 0 ? styles.thinNavItemActive : styles.thinNavItem]}
-                                onTouchEnd={() => this.toggleView(0)}>
-                                <Text style={[this.state.selectedIndex === 0 ? styles.thinNavItemTextActive : styles.thinNavItemText]}>
-                                    清单
-                                </Text>
-                            </View>
-                            <View style={[this.state.selectedIndex === 1 ? styles.thinNavItemActive : styles.thinNavItem]}
-                                onTouchStart={() => this.toggleView(1)}>
-                                <Text style={[this.state.selectedIndex === 1 ? styles.thinNavItemTextActive : styles.thinNavItemText]}>
-                                    日历
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
-
-                    <View style={styles.create} >
-                        <Image source={require('../img/create.png')} style={{width: 20, height: 20, tintColor: '#02B59C'}} />
-                    </View>
-                </View>
-
-
-            </Animated.View>
-
-            // <NavigatorIOS
-            //     navigationBarHidden={false}
+            // <Animated.View style={[styles.container]}>
             //
-            //     initialRoute={{
-            //         tintColor: '#888',
-            //         // titleImage: require('../img/logo.png'),
-            //         title: '入住清单',
-            //         leftButtonIcon: require('../img/todolist.png'),
-            //         rightButtonIcon: require('../img/calendar.png'),
-            //         component: Calendar,
-            //         passProps: {
-            //             appState: this.props.appState,
-            //             calendar: this.props.appState.AppData.calendar,
-            //             rooms: this.props.appState.AppData.rooms,
-            //             selectedRoom: this.props.appState.AppData.selectedRoom.roomId,
-            //             startDay: moment(this.props.appState.AppData.date.startDay),
-            //             endDay: moment(this.props.appState.AppData.date.endDay)
-            //         },
-            //     }}
-            //     style={{flex: 1}}
-            // />
+            //
+            //
+            //     <View style={styles.navContainer}>
+            //         <View style={styles.leftElement}>
+            //             <Image source={require('../img/todolist.png')} style={{tintColor: '#02B59C', width: 34, height: 34,}} />
+            //         </View>
+            //         <View style={styles.segmentsContainer}>
+            //             {/* <SegmentedControlIOS
+            //                 tintColor={'#333'}
+            //                 values={['清单', '日历']}
+            //                 selectedIndex={this.state.selectedIndex}
+            //                 onChange={(event) => {
+            //                 this.setState({selectedIndex: event.nativeEvent.selectedSegmentIndex});
+            //                 this.props.toggleView(event.nativeEvent.selectedSegmentIndex)
+            //                 }}
+            //
+            //             /> */}
+            //             <View style={styles.thinNav}>
+            //                 <View style={[this.state.selectedIndex === 0 ? styles.thinNavItemActive : styles.thinNavItem]}
+            //                     onTouchEnd={() => this.toggleView(0)}>
+            //                     <Text style={[this.state.selectedIndex === 0 ? styles.thinNavItemTextActive : styles.thinNavItemText]}>
+            //                         清单
+            //                     </Text>
+            //                 </View>
+            //                 <View style={[this.state.selectedIndex === 1 ? styles.thinNavItemActive : styles.thinNavItem]}
+            //                     onTouchStart={() => this.toggleView(1)}>
+            //                     <Text style={[this.state.selectedIndex === 1 ? styles.thinNavItemTextActive : styles.thinNavItemText]}>
+            //                         日历
+            //                     </Text>
+            //                 </View>
+            //             </View>
+            //         </View>
+            //
+            //         <View style={styles.create} >
+            //             <Image source={require('../img/add.png')} style={{width: 20, height: 20, tintColor: '#02B59C'}} />
+            //         </View>
+            //     </View>
+            //
+            //
+            // </Animated.View>
+
+            <NavigatorIOS
+                navigationBarHidden={false}
+
+                initialRoute={{
+                    tintColor: '#888',
+                    // titleImage: require('../img/logo.png'),
+                    title: '入住清单',
+                    // leftButtonIcon: require('../img/todolist.png'),
+                    // rightButtonIcon: require('../img/calendar.png'),
+                    component: Calendar,
+                    passProps: {
+                        appState: this.props.appState,
+                        calendar: this.props.appState.AppData.calendar,
+                        rooms: this.props.appState.AppData.rooms,
+                        selectedRoom: this.props.appState.AppData.selectedRoom.roomId,
+                        startDay: moment(this.props.appState.AppData.date.startDay),
+                        endDay: moment(this.props.appState.AppData.date.endDay)
+                    },
+                }}
+                style={{flex: 1}}
+            />
+
+            
 
 
             // <Navigator

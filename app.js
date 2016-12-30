@@ -20,6 +20,7 @@ import { is_user_logged_in, actions } from '@norasun/hibnb-core'
 import Nav from './components/nav.js';
 import Channel from './components/channel.js';
 import Hi from './components/hi.js';
+import Todolist from './components/todolist.js';
 
 
 class App extends Component {
@@ -47,19 +48,9 @@ class App extends Component {
       if(is_user_logged_in(this.props.appState.Auth)){
           return (
 
-                <View style={styles.container}>
 
-                    <Channel
-                        active={this.props.appState.Nav.active}
-                        appState = { this.props.appState }
-                        dispatch = { this.props.dispatch }
-                    />
-                    <Nav
-                        handleClick={this._toggleNav}
-                        active={this.props.appState.Nav.active}
-                        appState = { this.props.appState } />
+                    <Todolist key="todolisthaha" appState={this.props.appState} dispatch={this.props.dispatch} />
 
-                </View>
 
 
           );

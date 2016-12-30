@@ -16,11 +16,14 @@ import {
     ScrollView,
     StatusBar,
     findNodeHandle,
+    TabBarIOS,
+    NavigatorIOS,
  } from 'react-native';
  const RCTUIManager = require('NativeModules').UIManager;
 
 import Sort from './Sort.js'
 import Calendar from './calendar.js'
+import Todos from './Todos.js'
 
 const HEADER_MAX_HEIGHT = 90
 const HEADER_MIN_HEIGHT = 0
@@ -38,7 +41,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     viewContent: {
-        marginTop: 64,
+        marginTop: 0,
     },
 });
 import Loading from './loading.js';
@@ -53,6 +56,7 @@ class Todolist extends Component {
           refreshing: false,
           calendar_data : [],
           rooms_list: [],
+          active: 'Todolist',
           viewId: 0,
           modalVisible: false,
           scrollY: new Animated.Value(0),
@@ -113,61 +117,71 @@ class Todolist extends Component {
 
     _renderCalender = () => {
         return (
-            <Calendar
-                appState={this.props.appState}
-                calendar={this.props.appState.AppData.calendar}
-                rooms={this.props.appState.AppData.rooms}
-                selectedRoom={this.props.appState.AppData.selectedRoom.roomId}
-                startDay={moment(this.props.appState.AppData.date.startDay)}
-                endDay={moment(this.props.appState.AppData.date.endDay)}
-                scrollY={this.state.scrollY}
-                changeNav={this.changeNav}
+            <NavigatorIOS
+                navigationBarHidden={false}
+
+                initialRoute={{
+                    tintColor: '#666',
+                    // titleImage: require('../img/logo.png'),
+                    title: '日历',
+                    // leftButtonIcon: require('../img/todolist.png'),
+                    rightButtonIcon: require('../img/add.png'),
+                    component: Calendar,
+                    passProps: {
+                        appState: this.props.appState,
+                        calendar: this.props.appState.AppData.calendar,
+                        rooms: this.props.appState.AppData.rooms,
+                        selectedRoom: this.props.appState.AppData.selectedRoom.roomId,
+                        startDay: moment(this.props.appState.AppData.date.startDay),
+                        endDay: moment(this.props.appState.AppData.date.endDay)
+                    },
+                }}
+                style={{flex: 1}}
             />
+            // <Calendar
+            //     appState={this.props.appState}
+            //     calendar={this.props.appState.AppData.calendar}
+            //     rooms={this.props.appState.AppData.rooms}
+            //     selectedRoom={this.props.appState.AppData.selectedRoom.roomId}
+            //     startDay={moment(this.props.appState.AppData.date.startDay)}
+            //     endDay={moment(this.props.appState.AppData.date.endDay)}
+            //     scrollY={this.state.scrollY}
+            //     changeNav={this.changeNav}
+            // />
         )
     }
 
     _renderListView = () => {
-        let todoListView = [];
 
-        if(this.state.calendar_data != 0){
 
-          todoListView.push(
-              <ListView
+        return (
+            <NavigatorIOS
+                navigationBarHidden={false}
 
-                  ref={'listviewtodolist'}
+                initialRoute={{
+                    tintColor: '#666',
+                    // titleImage: require('../img/logo.png'),
+                    title: '清单',
+                    // leftButtonIcon: require('../img/todolist.png'),
+                    rightButtonIcon: require('../img/add.png'),
+                    component: Todos,
+                    passProps: {
+                        appState: this.props.appState,
+                        calendar: this.props.appState.AppData.calendar,
+                        rooms: this.props.appState.AppData.rooms,
+                        dispatch: this.props.dispatch
+                    }
+                }}
 
-                  refreshControl={
-                      <RefreshControl
-                          refreshing={this.state.refreshing}
-                          onRefresh={this._onRefresh}
-                          title="从Airbnb同步日历..."
-                      />
-                  }
-                  enableEmptySections={true}
-
-                  scrollEventThrottle={12}
-                  style={styles.viewContent}
-                  key='listviewtodolist'
-                  dataSource={this.state.calendar_data}
-                  renderRow={(data) => <Todolistrow {...data} />}
-
-              />)
-
-        }else{
-            todoListView.push(<View key={'loadingcontainer'} style={styles.loading}><Loading key={'loadingtodolist'} loaded={80} txt={'正在同步数据...'} /></View>)
-        }
-        return todoListView
+                style={{flex: 1}}
+            />
+        )
     }
 
 
 
 
     componentDidMount() {
-
-        // RCTUIManager.measure(findNodeHandle(this.refs.listviewtodolist), (x, y, width, height, pageX, pageY) => {
-        //     this.refs.calHeader.scrollTo({y:-100, x:0, animated: false})
-        // });
-
 
 
         this._loadTodolist();
@@ -176,31 +190,48 @@ class Todolist extends Component {
 
     render() {
         // AsyncStorage.clear()
-        let viewContent = []
-        if(this.state.viewId === 0){
-            viewContent.push(this._renderListView())
-        }else{
-            viewContent.push(this._renderCalender())
-        }
+
         return (
 
-                <View
-                    style={{
-                        flex: 1
-                    }}>
+            <TabBarIOS
+                tintColor="black"
+                itemPositioning={'center'}
+            >
+                <TabBarIOS.Item
+                    title=""
+                    icon={require('../img/todolist.png')}
+                    selected={this.state.active === 'Todolist'}
+                    onPress={() => this.setState({active: 'Todolist'})}
+                >
+                    <View style={{flex: 1}}>{this._renderListView()}</View>
+                </TabBarIOS.Item>
+                <TabBarIOS.Item
+                    title=""
+                    icon={require('../img/calendar.png')}
+                    selected={this.state.active === 'Calendar'}
+                    onPress={() => this.setState({active: 'Calendar'})}
+                >
+                    <View style={{flex: 1}}>{this._renderCalender()}</View>
+                </TabBarIOS.Item>
+                <TabBarIOS.Item
+                    title=""
+                    icon={require('../img/profile.png')}
+                    selected={this.state.active === 'Settings'}
+                    onPress={() => alert(2)}
+                >
 
-                    {viewContent}
+                </TabBarIOS.Item>
 
-                    <Sort
-                        appState={this.props.appState}
-                        startDay={moment(this.props.appState.AppData.date.startDay)}
-                        endDay={moment(this.props.appState.AppData.date.endDay)}
-                        toggleView={this.toggleView}
-                        scrollY={this.state.scrollY}
-                    />
-                </View>
+            </TabBarIOS>
 
         )
+        // {/* <Sort
+        //     appState={this.props.appState}
+        //     startDay={moment(this.props.appState.AppData.date.startDay)}
+        //     endDay={moment(this.props.appState.AppData.date.endDay)}
+        //     toggleView={this.toggleView}
+        //     scrollY={this.state.scrollY}
+        // /> */}
 
     }
 

@@ -31,8 +31,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     container: {
-        marginTop: 64,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#eee',
         flexDirection: 'column',
         flex: 1,
         justifyContent: "flex-start",
@@ -41,13 +40,10 @@ const styles = StyleSheet.create({
     scrollHeader: {
         padding: 10,
         paddingLeft: 0,
-        // borderBottomWidth: 1,
-        // borderColor: '#ddd',
         backgroundColor: '#fff',
     },
     scrollView: {
         flexDirection: 'row',
-        paddingTop: 20,
     },
     mainTitle: {
         fontSize: 24,
@@ -72,23 +68,24 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     resevation: {
-        backgroundColor: '#00C7AA',
+        backgroundColor: '#C9FCF5',
         width: 60,
         height: 40,
         flex: 1,
         overflow: 'hidden',
         borderRadius: 4,
-        borderWidth: 1,
-        borderColor: '#00C7AA',
+        borderWidth: StyleSheet.hairlineWidth,
+        borderColor: '#01927E',
         position: 'absolute',
         paddingLeft: 5,
         justifyContent: 'center',
     },
     resevationText: {
         fontSize: 10,
-        color: '#fff',
+        color: '#000',
+        fontWeight: '400',
         overflow: 'hidden',
-        width: 300,
+        width: 200,
     },
     room: {
         height: 50,
@@ -114,8 +111,9 @@ const styles = StyleSheet.create({
 
     sortContainer: {
         flex: 1,
-        backgroundColor: '#ddd',
+        backgroundColor: '#eee',
         padding: 20,
+        margin: 0,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderColor: '#bbb',
     },
@@ -242,7 +240,7 @@ class Calendar extends Component {
                 roomIndex[room.bnbRoomId] = i
                 i += 1
                 rooms.push(
-                    <View style={styles.room}>
+                    <View style={styles.room} key={'roomId' + room.bnbRoomId}>
                         <Text style={styles.roomText}>
                             {room.name}
                         </Text>
@@ -254,6 +252,7 @@ class Calendar extends Component {
             <View
                 style={styles.roomsContainer}
                 ref={'roomsContainer'}
+                key={'roomsContainer'}
             >
                 {rooms}
             </View>)
@@ -339,14 +338,6 @@ class Calendar extends Component {
 
         return (
 
-            <Animated.View style={[styles.container]} ref={'mainContainer'}>
-
-
-                {/* <StatusBar
-                    barStyle="light-content"
-                    // hidden={true}
-                /> */}
-
                 <ScrollView
                     stickyHeaderIndices={[2]}
                     // onScroll={this.scrollRoomName}
@@ -419,36 +410,6 @@ class Calendar extends Component {
                     />
                 </ScrollView>
 
-
-                {/* <View style={styles.analytics}>
-
-                    <View style={styles.analyticsColumn}>
-                    <Text style={styles.analyticsColumnTextBig}>
-                    90%
-                    </Text>
-                    <Text style={styles.analyticsColumnTextSmall}>
-                    入住率
-                    </Text>
-                    </View>
-                    <View style={styles.analyticsColumn}>
-                    <Text style={styles.analyticsColumnTextBig}>
-                    320
-                    </Text>
-                    <Text style={styles.analyticsColumnTextSmall}>
-                    间天
-                    </Text>
-                    </View>
-                    <View style={styles.analyticsColumn}>
-                    <Text style={styles.analyticsColumnTextBig}>
-                    32
-                    </Text>
-                    <Text style={styles.analyticsColumnTextSmall}>
-                    接待人组
-                    </Text>
-                    </View>
-
-                </View> */}
-            </Animated.View>
 
         )
     }
