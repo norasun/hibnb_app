@@ -24,6 +24,7 @@ import {
 import Sort from './Sort.js'
 import Calendar from './calendar.js'
 import Todos from './Todos.js'
+import Settings from './Settings.js'
 
 const HEADER_MAX_HEIGHT = 90
 const HEADER_MIN_HEIGHT = 0
@@ -124,7 +125,7 @@ class Todolist extends Component {
                     tintColor: '#666',
                     // titleImage: require('../img/logo.png'),
                     title: '日历',
-                    // leftButtonIcon: require('../img/todolist.png'),
+                    leftButtonIcon: require('../img/settingsnew.png'),
                     rightButtonIcon: require('../img/add.png'),
                     component: Calendar,
                     passProps: {
@@ -157,18 +158,40 @@ class Todolist extends Component {
         return (
             <NavigatorIOS
                 navigationBarHidden={false}
-
+                translucent={true}
                 initialRoute={{
                     tintColor: '#666',
                     // titleImage: require('../img/logo.png'),
-                    title: '清单',
-                    // leftButtonIcon: require('../img/todolist.png'),
+                    title: '提醒',
+                    leftButtonIcon: require('../img/settingsnew.png'),
                     rightButtonIcon: require('../img/add.png'),
                     component: Todos,
                     passProps: {
                         appState: this.props.appState,
                         calendar: this.props.appState.AppData.calendar,
                         rooms: this.props.appState.AppData.rooms,
+                        dispatch: this.props.dispatch
+                    }
+                }}
+
+                style={{flex: 1}}
+            />
+        )
+    }
+
+    renderSettings(){
+
+
+        return (
+            <NavigatorIOS
+
+                initialRoute={{
+                    tintColor: '#666',
+                    // titleImage: require('../img/logo.png'),
+                    title: '设置',
+                    component: Settings,
+                    passProps: {
+                        appState: this.props.appState,
                         dispatch: this.props.dispatch
                     }
                 }}
@@ -195,13 +218,14 @@ class Todolist extends Component {
 
             <TabBarIOS
                 tintColor="black"
-                itemPositioning={'center'}
+                // itemPositioning={'center'}
             >
                 <TabBarIOS.Item
                     title=""
-                    icon={require('../img/todolist.png')}
+                    icon={require('../img/notification.png')}
                     selected={this.state.active === 'Todolist'}
                     onPress={() => this.setState({active: 'Todolist'})}
+
                 >
                     <View style={{flex: 1}}>{this._renderListView()}</View>
                 </TabBarIOS.Item>
@@ -217,9 +241,9 @@ class Todolist extends Component {
                     title=""
                     icon={require('../img/profile.png')}
                     selected={this.state.active === 'Settings'}
-                    onPress={() => alert(2)}
+                    onPress={() => this.setState({active: 'Settings'})}
                 >
-
+                    <View style={{flex: 1}}>{this.renderSettings()}</View>
                 </TabBarIOS.Item>
 
             </TabBarIOS>

@@ -18,7 +18,7 @@ import { is_user_logged_in, actions } from '@norasun/hibnb-core'
 
 //导入UI
 import Nav from './components/nav.js';
-import Channel from './components/channel.js';
+// import Channel from './components/channel.js';
 import Hi from './components/hi.js';
 import Todolist from './components/todolist.js';
 
