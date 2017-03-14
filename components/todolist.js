@@ -122,13 +122,19 @@ class Todolist extends Component {
                 navigationBarHidden={false}
 
                 initialRoute={{
-                    tintColor: '#000',
-                    barTintColor: '#fff',
-                    titleTextColor: '#000',
+<<<<<<< HEAD
+                    tintColor: '#aaa',
+                    barTintColor: '#FD2D27',
+                    titleTextColor: '#fff',
+                    shadowHidden: true,
+=======
+                    tintColor: '#666',
+>>>>>>> parent of abad55f... react-native 升级到4.0
                     // titleImage: require('../img/logo.png'),
                     title: '日历',
-                    leftButtonIcon: require('../img/settingsnew.png'),
-                    rightButtonIcon: require('../img/add.png'),
+                    // rightButtonIcon: require('../img/settingsnew.png'),
+                    // rightButtonTitle: '筛选',
+                    // rightButtonIcon: require('../img/add.png'),
                     component: Calendar,
                     passProps: {
                         appState: this.props.appState,
@@ -162,11 +168,14 @@ class Todolist extends Component {
                 navigationBarHidden={false}
                 translucent={true}
                 initialRoute={{
-                    tintColor: '#666',
+                    tintColor: '#aaa',
+                    barTintColor: '#FC3933',
+                    titleTextColor: '#fff',
+                    shadowHidden: true,
                     // titleImage: require('../img/logo.png'),
                     title: '提醒',
-                    leftButtonIcon: require('../img/settingsnew.png'),
-                    rightButtonIcon: require('../img/add.png'),
+                    // leftButtonIcon: require('../img/settingsnew.png'),
+                    // rightButtonIcon: require('../img/add.png'),
                     component: Todos,
                     passProps: {
                         appState: this.props.appState,
@@ -188,10 +197,14 @@ class Todolist extends Component {
             <NavigatorIOS
 
                 initialRoute={{
-                    tintColor: '#fff',
-                    titleTextColor: '#fff',
-                    shadowHidden: true,
-                    barTintColor: '#000',
+<<<<<<< HEAD
+                    tintColor: '#000',
+                    titleTextColor: '#000',
+                    // shadowHidden: true,
+                    barTintColor: '#fff',
+=======
+                    tintColor: '#666',
+>>>>>>> parent of abad55f... react-native 升级到4.0
                     // titleImage: require('../img/logo.png'),
                     title: '设置',
                     component: Settings,
@@ -222,9 +235,11 @@ class Todolist extends Component {
         return (
 
             <TabBarIOS
-                tintColor="black"
+                tintColor="#FD2D27"
+                // unselectedTintColor="#333"
                 // itemPositioning={'center'}
             >
+                
                 <TabBarIOS.Item
                     title=""
                     icon={require('../img/notification.png')}
@@ -232,7 +247,6 @@ class Todolist extends Component {
                     onPress={() => this.setState({active: 'Todolist'})}
 
                 >
-
                     <View style={{flex: 1}}>{this._renderListView()}</View>
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
@@ -240,6 +254,23 @@ class Todolist extends Component {
                     icon={require('../img/calendar.png')}
                     selected={this.state.active === 'Calendar'}
                     onPress={() => this.setState({active: 'Calendar'})}
+                >
+                    <View style={{flex: 1}}>{this._renderCalender()}</View>
+                </TabBarIOS.Item>
+                <TabBarIOS.Item
+                    title=""
+                    icon={require('../img/add.png')}
+                    onPress={() => this.setState({active: 'Add'})}
+                >
+                    <View style={{flex: 1}}>
+                        {this._renderCalender()}
+                    </View>
+                </TabBarIOS.Item>
+                <TabBarIOS.Item
+                    title=""
+                    icon={require('../img/pulse.png')}
+                    selected={this.state.active === 'Pulse'}
+                    onPress={() => this.setState({active: 'Pulse'})}
                 >
                     <View style={{flex: 1}}>
                         {this._renderCalender()}
@@ -251,10 +282,7 @@ class Todolist extends Component {
                     selected={this.state.active === 'Settings'}
                     onPress={() => this.setState({active: 'Settings'})}
                 >
-
-                    <View style={{flex: 1}}>
-                        {this.renderSettings()}
-                    </View>
+                    <View style={{flex: 1}}>{this.renderSettings()}</View>
                 </TabBarIOS.Item>
 
             </TabBarIOS>

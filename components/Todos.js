@@ -136,6 +136,9 @@ class Todos extends Component {
         return (
 
             <View>
+                <StatusBar
+                    barStyle="light-content"
+                />
                 {this._renderListView()}
             </View>
 
