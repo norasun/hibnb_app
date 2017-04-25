@@ -105,6 +105,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 =======
 =======
@@ -200,6 +201,8 @@
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
 		};
+=======
+>>>>>>> parent of abad55f... react-native 升级到4.0
 =======
 >>>>>>> parent of abad55f... react-native 升级到4.0
 		5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */ = {
@@ -454,6 +457,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */,
 =======
 
@@ -468,6 +472,9 @@
 =======
 				C279FD9A1DFA7F2B002E8A67 /* libRCTImage-tvOS.a */,
 >>>>>>> parent of abad55f... react-native 升级到4.0
+=======
+				C279FD9A1DFA7F2B002E8A67 /* libRCTImage-tvOS.a */,
+>>>>>>> parent of abad55f... react-native 升级到4.0
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -479,6 +486,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E8C1DF850E9000B6D8A /* libRCTNetwork-tvOS.a */,
 =======
 
@@ -490,6 +498,9 @@
 				3DAD3E8C1DF850E9000B6D8A /* libRCTNetwork-tvOS.a */,
 
 >>>>>>> parent of 362ed76... 报错
+=======
+				C279FDA21DFA7F2B002E8A67 /* libRCTNetwork-tvOS.a */,
+>>>>>>> parent of abad55f... react-native 升级到4.0
 =======
 				C279FDA21DFA7F2B002E8A67 /* libRCTNetwork-tvOS.a */,
 >>>>>>> parent of abad55f... react-native 升级到4.0
@@ -529,6 +540,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E901DF850E9000B6D8A /* libRCTSettings-tvOS.a */,
 =======
 
@@ -543,6 +555,9 @@
 =======
 				C279FDA61DFA7F2B002E8A67 /* libRCTSettings-tvOS.a */,
 >>>>>>> parent of abad55f... react-native 升级到4.0
+=======
+				C279FDA61DFA7F2B002E8A67 /* libRCTSettings-tvOS.a */,
+>>>>>>> parent of abad55f... react-native 升级到4.0
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -554,6 +569,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */,
 =======
 
@@ -565,6 +581,9 @@
 				3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */,
 
 >>>>>>> parent of 362ed76... 报错
+=======
+				C279FDAF1DFA7F2B002E8A67 /* libRCTWebSocket-tvOS.a */,
+>>>>>>> parent of abad55f... react-native 升级到4.0
 =======
 				C279FDAF1DFA7F2B002E8A67 /* libRCTWebSocket-tvOS.a */,
 >>>>>>> parent of abad55f... react-native 升级到4.0
@@ -593,6 +612,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> parent of 362ed76... 报错
@@ -617,6 +637,9 @@
 =======
 				C279FDB31DFA7F2B002E8A67 /* libReact-tvOS.a */,
 >>>>>>> parent of abad55f... react-native 升级到4.0
+=======
+				C279FDB31DFA7F2B002E8A67 /* libReact-tvOS.a */,
+>>>>>>> parent of abad55f... react-native 升级到4.0
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -637,6 +660,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E881DF850E9000B6D8A /* libRCTLinking-tvOS.a */,
 =======
 
@@ -648,6 +672,9 @@
 				3DAD3E881DF850E9000B6D8A /* libRCTLinking-tvOS.a */,
 
 >>>>>>> parent of 362ed76... 报错
+=======
+				C279FD9E1DFA7F2B002E8A67 /* libRCTLinking-tvOS.a */,
+>>>>>>> parent of abad55f... react-native 升级到4.0
 =======
 				C279FD9E1DFA7F2B002E8A67 /* libRCTLinking-tvOS.a */,
 >>>>>>> parent of abad55f... react-native 升级到4.0
@@ -680,6 +707,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E941DF850E9000B6D8A /* libRCTText-tvOS.a */,
 =======
 
@@ -691,6 +719,9 @@
 				3DAD3E941DF850E9000B6D8A /* libRCTText-tvOS.a */,
 
 >>>>>>> parent of 362ed76... 报错
+=======
+				C279FDAA1DFA7F2B002E8A67 /* libRCTText-tvOS.a */,
+>>>>>>> parent of abad55f... react-native 升级到4.0
 =======
 				C279FDAA1DFA7F2B002E8A67 /* libRCTText-tvOS.a */,
 >>>>>>> parent of abad55f... react-native 升级到4.0
@@ -945,6 +976,7 @@
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 <<<<<<< HEAD
+<<<<<<< HEAD
 		3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */ = {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1040,6 +1072,8 @@
 			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+=======
+>>>>>>> parent of abad55f... react-native 升级到4.0
 =======
 >>>>>>> parent of abad55f... react-native 升级到4.0
 		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {

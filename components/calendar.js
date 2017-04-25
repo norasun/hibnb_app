@@ -111,14 +111,14 @@ const styles = StyleSheet.create({
 
     sortContainer: {
         flex: 1,
-        backgroundColor: '#eee',
+        backgroundColor: '#f1f1f1',
         padding: 20,
         margin: 0,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderColor: '#bbb',
     },
     selectButton: {
-        height: 40,
+        height: 44,
         flex: 1,
         backgroundColor: '#fff',
         borderWidth: StyleSheet.hairlineWidth,
@@ -342,7 +342,7 @@ class Calendar extends Component {
                     stickyHeaderIndices={[2]}
                     // onScroll={this.scrollRoomName}
                     scrollEventThrottle={10}
-                    contentOffset={{x:0, y: 121}}
+                    // contentOffset={{x:0, y: 121}}
                     ref={'mainScroll'}
                     // onScroll={Animated.event(
                     //     [{nativeEvent: {contentOffset: {y: this.props.scrollY}}}]
@@ -361,7 +361,7 @@ class Calendar extends Component {
                     <View style={styles.sortContainer}>
                         <View style={[styles.selectButton, styles.selectButtonStart]}>
                             <Text style={styles.selectButtonText}>
-                                2016.10.22 / 2016.12.23
+                                {moment(this.props.startDay).format('YYYY.MM.DD')} / {moment(this.props.endDay).format('YYYY.MM.DD')}
                             </Text>
                         </View>
                         <View style={[styles.selectButton, styles.selectButtonEnd]}>
