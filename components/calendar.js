@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     },
     roomText: {
         fontSize: 12,
-        color: '#333'
+        color: '#888'
     },
     roomsContainer: {
         position: 'absolute',
