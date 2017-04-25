@@ -7,12 +7,19 @@
     "test": "jest"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@norasun/hibnb-core": "^1.7.6",
     "fs": "0.0.1-security",
     "ical2json": "^1.1.0",
     "react": "15.4.1",
     "react-native": "^0.42.0",
     "react-native-fs": "^2.1.0-rc.1",
+=======
+    "@norasun/hibnb-core": "^1.6.3",
+    "ical2json": "^0.3.0",
+    "react": "15.4.1",
+    "react-native": "^0.40.0",
+>>>>>>> parent of 362ed76... 报错
     "react-redux": "^4.4.6",
     "redux-persist": "^4.0.0-beta1"
   },
