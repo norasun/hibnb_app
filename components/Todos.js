@@ -113,7 +113,7 @@ class Todos extends Component {
                   key='listviewtodos'
                   dataSource={this.state.calendar_data}
                   renderRow={(data) => <Todolistrow {...data} />}
-                  style={{paddingTop: 64}}
+
               />)
 
         }else{
@@ -135,7 +135,7 @@ class Todos extends Component {
 
         return (
 
-            <View>
+            <View style={{marginTop: 64}}>
                 {this._renderListView()}
             </View>
 
