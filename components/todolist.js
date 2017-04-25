@@ -24,7 +24,6 @@ import {
 import Sort from './Sort.js'
 import Calendar from './calendar.js'
 import Todos from './Todos.js'
-import Settings from './Settings.js'
 
 const HEADER_MAX_HEIGHT = 90
 const HEADER_MIN_HEIGHT = 0
@@ -125,7 +124,7 @@ class Todolist extends Component {
                     tintColor: '#666',
                     // titleImage: require('../img/logo.png'),
                     title: '日历',
-                    leftButtonIcon: require('../img/settingsnew.png'),
+                    // leftButtonIcon: require('../img/todolist.png'),
                     rightButtonIcon: require('../img/add.png'),
                     component: Calendar,
                     passProps: {
@@ -158,12 +157,12 @@ class Todolist extends Component {
         return (
             <NavigatorIOS
                 navigationBarHidden={false}
-                translucent={true}
+
                 initialRoute={{
                     tintColor: '#666',
                     // titleImage: require('../img/logo.png'),
-                    title: '提醒',
-                    leftButtonIcon: require('../img/settingsnew.png'),
+                    title: '清单',
+                    // leftButtonIcon: require('../img/todolist.png'),
                     rightButtonIcon: require('../img/add.png'),
                     component: Todos,
                     passProps: {
@@ -179,6 +178,7 @@ class Todolist extends Component {
         )
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -210,6 +210,8 @@ class Todolist extends Component {
 >>>>>>> parent of abad55f... react-native 升级到4.0
 =======
 >>>>>>> parent of a2627f5... Revert "完成了settings页面的初步布局"
+=======
+>>>>>>> parent of 5f12a18... 完成了settings页面的初步布局
 
 
 
@@ -227,14 +229,13 @@ class Todolist extends Component {
 
             <TabBarIOS
                 tintColor="black"
-                // itemPositioning={'center'}
+                itemPositioning={'center'}
             >
                 <TabBarIOS.Item
                     title=""
-                    icon={require('../img/notification.png')}
+                    icon={require('../img/todolist.png')}
                     selected={this.state.active === 'Todolist'}
                     onPress={() => this.setState({active: 'Todolist'})}
-
                 >
                     <View style={{flex: 1}}>{this._renderListView()}</View>
                 </TabBarIOS.Item>
@@ -250,8 +251,9 @@ class Todolist extends Component {
                     title=""
                     icon={require('../img/profile.png')}
                     selected={this.state.active === 'Settings'}
-                    onPress={() => this.setState({active: 'Settings'})}
+                    onPress={() => alert(2)}
                 >
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -269,6 +271,9 @@ class Todolist extends Component {
 =======
                     <View style={{flex: 1}}>{this.renderSettings()}</View>
 >>>>>>> parent of abad55f... react-native 升级到4.0
+=======
+
+>>>>>>> parent of 5f12a18... 完成了settings页面的初步布局
                 </TabBarIOS.Item>
 
             </TabBarIOS>
