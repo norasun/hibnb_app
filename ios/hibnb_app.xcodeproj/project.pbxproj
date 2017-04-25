@@ -103,8 +103,11 @@
 			remoteInfo = React;
 		};
 <<<<<<< HEAD
+<<<<<<< HEAD
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 =======
+=======
+>>>>>>> parent of 362ed76... 报错
 		3DAD3E831DF850E9000B6D8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */;
@@ -446,7 +449,13 @@
 			children = (
 				00C302C01ABCB91800DB3ED1 /* libRCTImage.a */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */,
+=======
+
+				3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */,
+
+>>>>>>> parent of 362ed76... 报错
 =======
 
 				3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */,
@@ -461,7 +470,13 @@
 			children = (
 				00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E8C1DF850E9000B6D8A /* libRCTNetwork-tvOS.a */,
+=======
+
+				3DAD3E8C1DF850E9000B6D8A /* libRCTNetwork-tvOS.a */,
+
+>>>>>>> parent of 362ed76... 报错
 =======
 
 				3DAD3E8C1DF850E9000B6D8A /* libRCTNetwork-tvOS.a */,
@@ -501,7 +516,13 @@
 			children = (
 				139105C11AF99BAD00B5F7CC /* libRCTSettings.a */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E901DF850E9000B6D8A /* libRCTSettings-tvOS.a */,
+=======
+
+				3DAD3E901DF850E9000B6D8A /* libRCTSettings-tvOS.a */,
+
+>>>>>>> parent of 362ed76... 报错
 =======
 
 				3DAD3E901DF850E9000B6D8A /* libRCTSettings-tvOS.a */,
@@ -516,7 +537,13 @@
 			children = (
 				139FDEF41B06529B00C62182 /* libRCTWebSocket.a */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */,
+=======
+
+				3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */,
+
+>>>>>>> parent of 362ed76... 报错
 =======
 
 				3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */,
@@ -545,6 +572,10 @@
 			children = (
 				146834041AC3E56700842450 /* libReact.a */,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 362ed76... 报错
 =======
 
 >>>>>>> parent of 362ed76... 报错
@@ -556,6 +587,10 @@
 				3DAD3EAD1DF850E9000B6D8A /* libjschelpers.a */,
 				3DAD3EAF1DF850E9000B6D8A /* libjschelpers.a */,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 362ed76... 报错
 =======
 
 >>>>>>> parent of 362ed76... 报错
@@ -577,7 +612,13 @@
 			children = (
 				78C398B91ACF4ADC00677621 /* libRCTLinking.a */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E881DF850E9000B6D8A /* libRCTLinking-tvOS.a */,
+=======
+
+				3DAD3E881DF850E9000B6D8A /* libRCTLinking-tvOS.a */,
+
+>>>>>>> parent of 362ed76... 报错
 =======
 
 				3DAD3E881DF850E9000B6D8A /* libRCTLinking-tvOS.a */,
@@ -610,7 +651,13 @@
 			children = (
 				832341B51AAA6A8300B99B32 /* libRCTText.a */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E941DF850E9000B6D8A /* libRCTText-tvOS.a */,
+=======
+
+				3DAD3E941DF850E9000B6D8A /* libRCTText-tvOS.a */,
+
+>>>>>>> parent of 362ed76... 报错
 =======
 
 				3DAD3E941DF850E9000B6D8A /* libRCTText-tvOS.a */,
@@ -868,7 +915,101 @@
 		};
 		3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */ = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRCTImage-tvOS.a";
+			remoteRef = 3DAD3E831DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3DAD3E881DF850E9000B6D8A /* libRCTLinking-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRCTLinking-tvOS.a";
+			remoteRef = 3DAD3E871DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3DAD3E8C1DF850E9000B6D8A /* libRCTNetwork-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRCTNetwork-tvOS.a";
+			remoteRef = 3DAD3E8B1DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3DAD3E901DF850E9000B6D8A /* libRCTSettings-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRCTSettings-tvOS.a";
+			remoteRef = 3DAD3E8F1DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3DAD3E941DF850E9000B6D8A /* libRCTText-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRCTText-tvOS.a";
+			remoteRef = 3DAD3E931DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRCTWebSocket-tvOS.a";
+			remoteRef = 3DAD3E981DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3DAD3EA31DF850E9000B6D8A /* libReact.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReact.a;
+			remoteRef = 3DAD3EA21DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3DAD3EA51DF850E9000B6D8A /* libyoga.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libyoga.a;
+			remoteRef = 3DAD3EA41DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3DAD3EA71DF850E9000B6D8A /* libyoga.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libyoga.a;
+			remoteRef = 3DAD3EA61DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3DAD3EA91DF850E9000B6D8A /* libcxxreact.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libcxxreact.a;
+			remoteRef = 3DAD3EA81DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3DAD3EAB1DF850E9000B6D8A /* libcxxreact.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libcxxreact.a;
+			remoteRef = 3DAD3EAA1DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3DAD3EAD1DF850E9000B6D8A /* libjschelpers.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libjschelpers.a;
+			remoteRef = 3DAD3EAC1DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3DAD3EAF1DF850E9000B6D8A /* libjschelpers.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libjschelpers.a;
+			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
+>>>>>>> parent of 362ed76... 报错
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libRCTImage-tvOS.a";
