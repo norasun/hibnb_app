@@ -122,7 +122,13 @@ class Todolist extends Component {
                 navigationBarHidden={false}
 
                 initialRoute={{
+<<<<<<< HEAD
                     tintColor: '#666',
+=======
+                    tintColor: '#000',
+                    barTintColor: '#fff',
+                    titleTextColor: '#000',
+>>>>>>> parent of 362ed76... 报错
                     // titleImage: require('../img/logo.png'),
                     title: '日历',
                     leftButtonIcon: require('../img/settingsnew.png'),
@@ -186,7 +192,14 @@ class Todolist extends Component {
             <NavigatorIOS
 
                 initialRoute={{
+<<<<<<< HEAD
                     tintColor: '#666',
+=======
+                    tintColor: '#fff',
+                    titleTextColor: '#fff',
+                    shadowHidden: true,
+                    barTintColor: '#000',
+>>>>>>> parent of 362ed76... 报错
                     // titleImage: require('../img/logo.png'),
                     title: '设置',
                     component: Settings,
@@ -227,6 +240,7 @@ class Todolist extends Component {
                     onPress={() => this.setState({active: 'Todolist'})}
 
                 >
+
                     <View style={{flex: 1}}>{this._renderListView()}</View>
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
@@ -235,7 +249,13 @@ class Todolist extends Component {
                     selected={this.state.active === 'Calendar'}
                     onPress={() => this.setState({active: 'Calendar'})}
                 >
+<<<<<<< HEAD
                     <View style={{flex: 1}}>{this._renderCalender()}</View>
+=======
+                    <View style={{flex: 1}}>
+                        {this._renderCalender()}
+                    </View>
+>>>>>>> parent of 362ed76... 报错
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
                     title=""
@@ -243,7 +263,10 @@ class Todolist extends Component {
                     selected={this.state.active === 'Settings'}
                     onPress={() => this.setState({active: 'Settings'})}
                 >
-                    <View style={{flex: 1}}>{this.renderSettings()}</View>
+
+                    <View style={{flex: 1}}>
+                        {this.renderSettings()}
+                    </View>
                 </TabBarIOS.Item>
 
             </TabBarIOS>

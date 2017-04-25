@@ -16,14 +16,14 @@ const styles = StyleSheet.create({
         marginTop: 30,
         borderTopWidth: StyleSheet.hairlineWidth,
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderColor: '#ccc',
+        borderColor: '#bbb',
         backgroundColor: '#fff',
         paddingLeft: 20,
         overflow: 'hidden'
     },
     per: {
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderColor: '#ccc',
+        borderColor: '#bbb',
         flex: 1,
         height: 46,
         justifyContent: 'center',
