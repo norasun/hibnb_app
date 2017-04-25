@@ -23,11 +23,15 @@
     "react": "15.4.1",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "react-native": "^0.40.0",
 <<<<<<< HEAD
 >>>>>>> parent of 362ed76... 报错
 =======
 >>>>>>> parent of 362ed76... 报错
+=======
+    "react-native": "0.39.0",
+>>>>>>> parent of abad55f... react-native 升级到4.0
 =======
     "react-native": "0.39.0",
 >>>>>>> parent of abad55f... react-native 升级到4.0

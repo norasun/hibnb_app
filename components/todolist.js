@@ -254,6 +254,7 @@ class Todolist extends Component {
                 >
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
                     <View style={{flex: 1}}>{this.renderSettings()}</View>
@@ -261,6 +262,9 @@ class Todolist extends Component {
 =======
                     <View style={{flex: 1}}>{this.renderSettings()}</View>
 >>>>>>> parent of a2627f5... Revert "完成了settings页面的初步布局"
+=======
+                    <View style={{flex: 1}}>{this.renderSettings()}</View>
+>>>>>>> parent of abad55f... react-native 升级到4.0
                 </TabBarIOS.Item>
 
             </TabBarIOS>
