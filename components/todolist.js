@@ -122,9 +122,7 @@ class Todolist extends Component {
                 navigationBarHidden={false}
 
                 initialRoute={{
-                    tintColor: '#000',
-                    barTintColor: '#fff',
-                    titleTextColor: '#000',
+                    tintColor: '#666',
                     // titleImage: require('../img/logo.png'),
                     title: '日历',
                     leftButtonIcon: require('../img/settingsnew.png'),
@@ -188,10 +186,7 @@ class Todolist extends Component {
             <NavigatorIOS
 
                 initialRoute={{
-                    tintColor: '#fff',
-                    titleTextColor: '#fff',
-                    shadowHidden: true,
-                    barTintColor: '#000',
+                    tintColor: '#666',
                     // titleImage: require('../img/logo.png'),
                     title: '设置',
                     component: Settings,
@@ -232,7 +227,6 @@ class Todolist extends Component {
                     onPress={() => this.setState({active: 'Todolist'})}
 
                 >
-
                     <View style={{flex: 1}}>{this._renderListView()}</View>
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
@@ -241,9 +235,7 @@ class Todolist extends Component {
                     selected={this.state.active === 'Calendar'}
                     onPress={() => this.setState({active: 'Calendar'})}
                 >
-                    <View style={{flex: 1}}>
-                        {this._renderCalender()}
-                    </View>
+                    <View style={{flex: 1}}>{this._renderCalender()}</View>
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
                     title=""
@@ -251,10 +243,7 @@ class Todolist extends Component {
                     selected={this.state.active === 'Settings'}
                     onPress={() => this.setState({active: 'Settings'})}
                 >
-
-                    <View style={{flex: 1}}>
-                        {this.renderSettings()}
-                    </View>
+                    <View style={{flex: 1}}>{this.renderSettings()}</View>
                 </TabBarIOS.Item>
 
             </TabBarIOS>

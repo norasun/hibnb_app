@@ -104,6 +104,7 @@
 		};
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 =======
 =======
@@ -199,6 +200,8 @@
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
 		};
+=======
+>>>>>>> parent of abad55f... react-native 升级到4.0
 		5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
@@ -450,6 +453,7 @@
 				00C302C01ABCB91800DB3ED1 /* libRCTImage.a */,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */,
 =======
 
@@ -461,6 +465,9 @@
 				3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */,
 
 >>>>>>> parent of 362ed76... 报错
+=======
+				C279FD9A1DFA7F2B002E8A67 /* libRCTImage-tvOS.a */,
+>>>>>>> parent of abad55f... react-native 升级到4.0
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -471,6 +478,7 @@
 				00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E8C1DF850E9000B6D8A /* libRCTNetwork-tvOS.a */,
 =======
 
@@ -482,6 +490,9 @@
 				3DAD3E8C1DF850E9000B6D8A /* libRCTNetwork-tvOS.a */,
 
 >>>>>>> parent of 362ed76... 报错
+=======
+				C279FDA21DFA7F2B002E8A67 /* libRCTNetwork-tvOS.a */,
+>>>>>>> parent of abad55f... react-native 升级到4.0
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -517,6 +528,7 @@
 				139105C11AF99BAD00B5F7CC /* libRCTSettings.a */,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E901DF850E9000B6D8A /* libRCTSettings-tvOS.a */,
 =======
 
@@ -528,6 +540,9 @@
 				3DAD3E901DF850E9000B6D8A /* libRCTSettings-tvOS.a */,
 
 >>>>>>> parent of 362ed76... 报错
+=======
+				C279FDA61DFA7F2B002E8A67 /* libRCTSettings-tvOS.a */,
+>>>>>>> parent of abad55f... react-native 升级到4.0
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -538,6 +553,7 @@
 				139FDEF41B06529B00C62182 /* libRCTWebSocket.a */,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */,
 =======
 
@@ -549,6 +565,9 @@
 				3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */,
 
 >>>>>>> parent of 362ed76... 报错
+=======
+				C279FDAF1DFA7F2B002E8A67 /* libRCTWebSocket-tvOS.a */,
+>>>>>>> parent of abad55f... react-native 升级到4.0
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -573,6 +592,7 @@
 				146834041AC3E56700842450 /* libReact.a */,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> parent of 362ed76... 报错
@@ -594,6 +614,9 @@
 =======
 
 >>>>>>> parent of 362ed76... 报错
+=======
+				C279FDB31DFA7F2B002E8A67 /* libReact-tvOS.a */,
+>>>>>>> parent of abad55f... react-native 升级到4.0
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -613,6 +636,7 @@
 				78C398B91ACF4ADC00677621 /* libRCTLinking.a */,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E881DF850E9000B6D8A /* libRCTLinking-tvOS.a */,
 =======
 
@@ -624,6 +648,9 @@
 				3DAD3E881DF850E9000B6D8A /* libRCTLinking-tvOS.a */,
 
 >>>>>>> parent of 362ed76... 报错
+=======
+				C279FD9E1DFA7F2B002E8A67 /* libRCTLinking-tvOS.a */,
+>>>>>>> parent of abad55f... react-native 升级到4.0
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -652,6 +679,7 @@
 				832341B51AAA6A8300B99B32 /* libRCTText.a */,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				3DAD3E941DF850E9000B6D8A /* libRCTText-tvOS.a */,
 =======
 
@@ -663,6 +691,9 @@
 				3DAD3E941DF850E9000B6D8A /* libRCTText-tvOS.a */,
 
 >>>>>>> parent of 362ed76... 报错
+=======
+				C279FDAA1DFA7F2B002E8A67 /* libRCTText-tvOS.a */,
+>>>>>>> parent of abad55f... react-native 升级到4.0
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -913,6 +944,7 @@
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+<<<<<<< HEAD
 		3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */ = {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1008,6 +1040,8 @@
 			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+=======
+>>>>>>> parent of abad55f... react-native 升级到4.0
 		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
 >>>>>>> parent of 362ed76... 报错
 			isa = PBXReferenceProxy;
@@ -1550,6 +1584,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native/ReactCommon/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1585,6 +1624,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native/ReactCommon/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
